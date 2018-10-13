@@ -2,6 +2,8 @@ const gulp = require('gulp');
 const rename = require('gulp-rename');
 // const less = require('gulp-less');
 const sass = require('gulp-sass');
+const del = require('del');
+
 
 // const pug = require('gulp-pug');
 const minifyCSS = require('gulp-csso');
@@ -77,6 +79,7 @@ gulp.task('build-js', function(){
 });
 
 gulp.task('build-imgs', function(){
+  del(['build/imgs/*']);
   // gulp.series('copy_imgs');
   return gulp.src('src/imgs/*')
     // .pipe(imagemin( {

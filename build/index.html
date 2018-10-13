@@ -31,52 +31,89 @@
 <![endif]-->
 
 <header>
+  <!-- TODO: Make this x an animated svg -->
+  <div class="nav-hamburger">=</div>
   <nav>
+    <!-- TODO: Make this x an animated svg -->
+    <!-- <div class="close">x</div> -->
     <ul>
-      <li>Home</li>
-      <li>Design</li>
-      <li>Dev</li>
-      <li>About</li>
+      <li><a href="#home" title="Home" class="nav-link">Home</a></li>
+      <li><a href="#design" title="Design" class="nav-link">Design</a></li>
+      <li><a href="#development" title="Development" class="nav-link">Development</a></li>
+      <li><a href="#about" title="About" class="nav-link">About</a></li>
     </ul>
   </nav>
 </header>
 
 <section class="intro section">
-  <h1>Hi, I'm David. I do UX <a href="#design">Design</a> and <a href="#dev">Development</a></h1>
-  <a href="#contents" class="introBtn">Scroll Down</a>
+  <h1>
+    Hi, I'm David<br>
+    I do UX <a href="#design">Design</a> and <a href="#dev">Development</a>
+    to make people’s lives better
+  </h1>
+  <a href="#main" class="introBtn">Scroll Down</a>
+  <div class="bg" data-depth="0.04"></div>
 </section>
 
-<main>
-  <section class="design">
-    <a href="#design" class="section-link" title="Design">
-      Design
-      <div class="shutters"></div>
-    </a>
-    <div class="contents">
-      <h1>Design</h1>
-    </div>
-  </section>
+<nav>
+  <a href="#design" class="section-link design" title="Design">
+    Design
+    <div class="shutters"></div>
+  </a>
 
-  <section class="dev">
+  <a href="#dev" class="section-link dev" title="Development">
+    Development
+    <div class="shutters"></div>
+  </a>
+
+  <a href="#about" class="section-link about" title="About">
+    About
+    <div class="shutters"></div>
+  </a>
+  <!-- <section class="design"> -->
+  <!-- </section> -->
+
+  <!-- <section class="dev">
+    <div class="shutters"></div>
     <a href="#dev" class="section-link" title="Development">
       /dev
-      <div class="shutters"></div>
     </a>
-    <div class="contents">
-      <h1>Development</h1>
-    </div>
   </section>
 
   <section class="about">
+    <div class="shutters"></div>
     <a href="#about" class="section-link" title="About">
       About
-      <div class="shutters"></div>
     </a>
     <div class="contents">
       <h1>About</h1>
     </div>
-  </section>
-</main>
+  </section> -->
+</nav>
+
+<section class="contents">
+
+    <div class="pane" id="design">
+      <h1>Design</h1>
+      <p>Hello there</p>
+      <a href="" onclick="alert('ok'); return false;">Click me</a>
+      <!-- <img src="imgs/tumblr_nbtdqqLRid1tkr7kao1_1280.jpg"> -->
+    </div>
+
+    <div class="pane" id="dev">
+      <h1>Development</h1>
+      <p>Hello there</p>
+      <img src="imgs/66678981_p2.png">
+    </div>
+
+    <div class="pane" id="about">
+      <img src="imgs/tumblr_nc6e88JZP11rnmn4zo1_1280.jpg">
+      <h1>About</h1>
+      <p>Hello there</p>
+    </div>
+    
+</section>
+
 
 <!-- <script src="js/vendor/modernizr-3.6.0.min.js"></script> -->
 <!--   <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -87,6 +124,9 @@
   <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.0.2/TweenMax.min.js"></script> -->
   <script src="js/TweenMax.min.js"></script>
   <script src="js/ScrollToPlugin.js"></script>
+  <!-- TODO: do we use the local or no? -->
+  <!-- <script src="js/parallax.js"></script> -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/parallax/3.1.0/parallax.min.js"></script>
 
 
   <!-- Google Analytics: change UA-XXXXX-Y to be your site's ID. -->

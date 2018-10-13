@@ -1,8 +1,92 @@
+/* TODO: Include font*/
+html {
+    // overflow: hidden;
+    // height: 110vh;
+}
+
 body {
-	height: 110vh;
+	overscroll-behavior: none;
+
+	font-family: 'Open Sans', sans-serif;
+	min-height: 110vh;
+    // height: 100%;
+    overflow: auto;
 
 	h1 {
 		color: #999;
+	}
+}
+
+header {
+	/*display: none; */
+	position: fixed;
+	top: 0;
+	right: 0;
+	z-index: 500;
+
+	.nav-hamburger {
+		position: absolute;
+		top: .5em;
+		right: .5em;
+		font-size: 2rem;
+		width: 1em;
+		height: 1em;
+		color: #ffffff;
+		background-color: #000000;
+		cursor: pointer;
+		z-index: 501;
+	}
+
+	nav {
+		display: none; 
+		// display: flex;
+		position: fixed;
+		top: 0;
+		left: 0;
+		height: 100vh;
+		width: 100vw;
+		background-color: rgba(255,255,255,0.95);
+
+		justify-content: space-around;
+		align-items: center;
+		flex-direction: column;
+
+		&.visible {
+			display: flex;
+			transition: 1s easeInOut;
+		}
+
+		.close {
+			position: absolute;
+			top: 1em;
+			right: 1em;
+			color: #000000;
+			font-size: 2rem;
+			cursor: pointer;
+		}
+
+		ul {
+			display: flex;
+			justify-content: space-around;
+			align-items: center;
+			flex-direction: column;
+
+			list-style: none;
+			padding: 0;
+			margin: 0;
+
+			li {
+				font-size: 3rem;
+				line-height: 2em;
+
+				a {
+					text-decoration: none;
+					color: #000000;
+					text-shadow: 0 5px 8px rgba(0,0,0,0.25);
+				}
+
+			}
+		}
 	}
 }
 
@@ -12,17 +96,56 @@ section.intro {
 	position: fixed;
 	top: 0;
 	left: 0;
-	display: block;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 	background-color: black;
-	background: url('/imgs/hero.jpg');
-	background-size: cover;
-	background-position: top center;
 	z-index: 100;
+	overflow: hidden;
+
+	.bg {
+		border: 1px solid red;
+		position: fixed;
+		top: 0;
+		left: 0;
+		margin-top: -5vh;
+		margin-left: -5vw;
+		width: 110vw;
+		height: 110vh;
+		background-image: url('/imgs/hero.jpg');
+		background-size: cover;
+		background-position: top center;
+		z-index: 99;
+	}
+
+	h1 {
+		font-size: 4rem;
+		color: #ffffff;
+		font-weight: normal;
+		width: 16em;
+		max-width: 80vw;
+		text-shadow: 1px 5px 10px rgba(0,0,0,0.5);
+		z-index: 101;
+
+		a {
+			color: orange;
+			text-decoration: none;
+		}
+	}
+
+	a.introBtn {
+		position: absolute;
+		bottom: 1em;
+		left: 50%;
+		color: #ffffff;
+		text-decoration: none;
+		z-index: 101;
+	}
 }
 
-main {
-	height: 100vh;
-	width: 100vw;
+nav {
+	height: 100%;
+	width: 100%;
 	position: fixed;
 	top: 0;
 	left: 0;
@@ -32,50 +155,143 @@ main {
 	justify-content: flex-start;
 	align-items: stretch;
 
-	background-color: orange;
+	pointer-events: none;
 
 	z-index: 2;
 
-	section {
+	a {
 		display: flex;
 		flex: 1;
+		position: relative;
+		overflow-x: hidden;
 
-		a.section-link {
-			display: flex;
-			flex: 1;
+		width: 100%;
+		height: 100%;
+		background-position: center center;
+		background-repeat: no-repeat;
+		background-size: cover;
 
-			overflow: hidden;
-			position: relative;
+		pointer-events: auto;
 
+		&.design {
+			background-image: url('/imgs/BL9NruAgfOY.jpg');
+		}
+
+		&.dev {
+			background-image: url('/imgs/tumblr_nhdfwyMrPL1sxm4gzo10_1280.jpg');
+		}
+
+		&.about {
+			background-image: url('/imgs/tumblr_nc6e88JZP11rnmn4zo1_1280.jpg');
+		}
+
+		// &::after {
+		// 	content: ' ';
+		// 	position: absolute;
+		// 	top: 0;
+		// 	left: 0;
+		// 	width: 100%;
+		// 	height: 100%;
+		// 	display: block;
+		// 	background-color: #000000;			
+		// }
+
+		// TODO: try to convert .shutters to &::after pseudo element
+		.shutters {
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
 			height: 100%;
+			display: block;
+			background-color: #000000;
+		}
 
-			.shutters {
-				position: absolute;
-				top: 0;
-				left: 0;
-				width: 100%;
-				height: 100%;
-				display: block;
-				background-color: #000000;
+		// a.section-link {
+		// 	position: absolute;
+
+		// 	height: 100%;
+		// 	width: 100%;
+
+		// 	color: #ffffff;
+		// 	text-decoration: none;
+
+		// 	pointer-events: auto;
+		// }
+
+		// .contents {
+		// 	// display: none;
+		// 	// width: 100%;
+		// 	// height: 100%;
+		// 	// background-position: center center;
+		// 	// background-repeat: no-repeat;
+		// 	// background-size: cover;
+
+		// 	.container {
+		// 		display: none;
+		// 		height: 100%;
+		// 		opacity: 0;
+		// 	}
+		// }
+
+		&.active {
+			opacity: 0;
+
+			&.hide {
+				opacity: 0;
 			}
-		}
-		.contents {
-			display: none;
+			// overflow-y: auto;
+			pointer-events: none;
+
+			a.section-link {
+				display: none;
+			}
+
+			// TODO: make this fade in?
+			.contents .pane {
+				display: block;
+				opacity: 1;
+				transition: 1s opacity ease-in-out;
+			}
+
 		}
 	}
 }
 
+.contents {
+	text-align: center;
+	display: none;
 
-section.design {
+	.pane {
+		display: none;
+	}
+}
+
+body.showContents {
 	.contents {
-		background: 
+		display: block;
+
+		.pane.active {
+			display: block;
+		}
 	}
 }
 
-section.dev {
 
-}
+// section.design {
+// 	// .contents {
+// 		background-image: url('/imgs/BL9NruAgfOY.jpg');
+// 	// }
+// }
 
-section.about {
+// section.dev {
+// 	// .contents {
+// 		background-image: url('/imgs/tumblr_nhdfwyMrPL1sxm4gzo10_1280.jpg');
+// 	// }
+// }
 
-}
+// section.about {
+// 	// .contents {
+// 		background-image: url('/imgs/tumblr_nc6e88JZP11rnmn4zo1_1280.jpg');
+// 	// }
+// }
