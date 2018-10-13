@@ -7,6 +7,9 @@ body {
   body h1 {
     color: #999; }
 
+.sr {
+  display: none; }
+
 header {
   /*display: none; */
   position: fixed;
@@ -149,18 +152,57 @@ nav {
         opacity: 0; }
       nav a.active a.section-link {
         display: none; }
-      nav a.active .contents .pane {
-        display: block;
-        opacity: 1;
-        transition: 1s opacity ease-in-out; }
 
 .contents {
-  text-align: center;
-  display: none; }
+  text-align: center; }
   .contents .pane {
-    display: none; }
-
-body.showContents .contents {
-  display: block; }
-  body.showContents .contents .pane.active {
-    display: block; }
+    display: none;
+    overflow-x: hidden; }
+    .contents .pane.active {
+      display: block;
+      width: calc(100vw * (30/32)); }
+    .contents .pane.active:nth-of-type(2) {
+      padding-left: calc(100vw * (1/32)); }
+    .contents .pane.active:nth-of-type(3) {
+      padding-left: calc(100vw * (2/32)); }
+    .contents .pane#design .feature {
+      background-image: url("/imgs/BL9NruAgfOY.jpg"); }
+    .contents .pane#dev .feature {
+      background-image: url("/imgs/tumblr_nhdfwyMrPL1sxm4gzo10_1280.jpg"); }
+    .contents .pane#dev h1 {
+      text-transform: lowercase; }
+    .contents .pane#about .feature {
+      background-image: url("/imgs/tumblr_nc6e88JZP11rnmn4zo1_1280.jpg"); }
+    .contents .pane .feature {
+      position: relative;
+      background-position: center center;
+      background-repeat: no-repeat;
+      background-size: cover;
+      height: 100vh;
+      width: 100%;
+      margin-bottom: -15vh;
+      overflow: hidden; }
+      .contents .pane .feature h1 {
+        position: absolute;
+        bottom: 15vh;
+        left: .5em;
+        width: 100%;
+        text-align: left;
+        color: #ffffff;
+        font-size: 4rem;
+        line-height: 1.5em;
+        font-weight: normal;
+        margin: 0; }
+        .contents .pane .feature h1::before {
+          content: '/';
+          color: orange;
+          font-weight: bold; }
+    .contents .pane .details {
+      background-color: #fff; }
+      .contents .pane .details::before {
+        content: ' ';
+        background-color: #ffffff;
+        height: 5vh;
+        width: 100%;
+        display: block;
+        position: relative; }

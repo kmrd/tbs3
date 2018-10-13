@@ -8,9 +8,14 @@ var intro; 	// intro section
 var introBtn; // ScrollDown button on the intro pane
 var shutters;
 var introTimeLine;
-var navLinks; // both the shutterLinks and the hamburgerLinks
-var shutterLinks; // both the shutterLinks and the hamburgerLinks
+var sectionTimeLine;
+var navLinks; // main content links
+
+// var hamburgerLinks; // menu links
 var sections; // all the content sections
+var currentSection;
+
+// var shutterLinks; // both the shutterLinks and the hamburgerLinks
 
 
 function initIntro () {
@@ -45,20 +50,20 @@ function initIntro () {
 
 function initNav() {
 	isShowingContents = false;
-	navLinks = document.querySelectorAll('.section-link, .nav-link');
-	hamburger = document.querySelector('.nav-hamburger');
+	// hamburger = document.querySelector('.nav-hamburger');
+	navLinks = document.querySelectorAll('nav>a');
 	shutters = document.querySelectorAll('.shutters');
-	shutterLinks = document.querySelectorAll('nav>a');
-	sections = document.querySelectorAll('.pane');
+	sections = document.querySelectorAll('section>.pane');
 	introTimeLine = new TimelineLite();
 	// sections = document.querySelectorAll('nav>a');
 
-	// TODO: check if there's a history state to resume to.
-
+	// Hide the intro and retract  the shutters
 	introTimeLine.add( TweenMax.to(intro, 0.8, { ease: Expo.easeInOut, y:'-100vh' }) );
 	introTimeLine.add( TweenMax.staggerTo(shutters, 0.5, { ease: Expo.easeInOut, left:'100%' }, 0.08) );
 	introTimeLine.stop();
 
+
+	// Check if there's a historic state to resume to
 	initState();
 
 
@@ -67,19 +72,33 @@ function initNav() {
 			e.preventDefault();
 			e.stopPropagation();
 
-			var stateObj = { section: e.target.hash };
-			history.pushState(stateObj, e.target.title, e.target.href);
+			setState(e.target);
+
+			sectionTimeLine = new TimelineLite();
+
+			// If we're inside of a section, backout of it
+			if (isShowingContents && currentSection) {
+				sectionTimeLine.add( TweenMax.to(window, 0.3, {
+					scrollTo: 0,
+					onComplete: deactivateLinks
+				}) );
+			}
 
 			// TODO: Hookup hamburger nav to these animations
-			TweenMax.to(shutterLinks, 0.8, { ease: Expo.easeInOut, flex:'1' });
-			TweenMax.to(e.target, 0.8, {
+			sectionTimeLine.add( TweenMax.to(navLinks, 0.8, {
+				ease: Expo.easeInOut,
+				flex:'1'
+			}) );
+			sectionTimeLine.add( TweenMax.to(e.target, 0.8, {
 				ease: Expo.easeInOut,
 				flex:'30',
-				onStart: disableLink,
+				onStart: makeLinkActive,
 				onStartParams: [e.target],
 				onComplete: showContents,
 				onCompleteParams: [e.target],
-			});
+			}) );
+
+			currentSection = document.querySelector(e.target.hash);
 		});
 	}
 
@@ -91,7 +110,7 @@ function initNav() {
 	// })
 }
 
-function disableLink(target) {
+function makeLinkActive(target) {
 	// console.log(target);
 	// let contents = target.querySelector('.contents');
 	isIntroFrozen = true;
@@ -100,29 +119,32 @@ function disableLink(target) {
 	// var domScroll = $(domId).offset().top;
 	// console.log( window.offset().top );
 	window.scrollTo(0,0);
-	document.querySelector('body').classList.toggle('showContents');
+	// document.querySelector('body').classList.toggle('showContents');
 
 	// sections.classList.toggle('')
 	for(let i = 0; i < sections.length; i++) {
-		// ( (index, el) => {
-		// console.log(sections[i])
-		sections[i].classList.remove('active');
+		s = sections[i];
+
+		if(s.id === target.hash.substr(1)) {
+			s.classList.add('active');
+		} else {
+			s.classList.remove('active');
+		}
 	}
-	document.querySelector(target.hash).classList.add('active');
-	// .classList.add("mystyle");
+}
+function deactivateLinks() {
+	for(let i = 0; i < navLinks.length; i++)
+	{
+		// console.log('resetting');
+		navLinks[i].classList.remove('active');
+		navLinks[i].classList.remove('hide');
+	}
 
-	// let container = target.querySelector('.contents').querySelector('.container');
-
-	// TweenMax.to(target.querySelector('.contents').querySelectorAll('.container'), 0.8, { opacity: 1 });
-	// target.querySelector('a').style.display='none';
-	// target.querySelector('.contents').classList.toggle('hidden');
-	// document.querySelector('main').style.position = 'relative';
-	//querySelector('a').style.display='none';
-	// console.log(target);
 }
 
 function showContents(target) {
-	console.log('showContents');
+	// console.log('showContents');
+
 	target.classList.toggle('active');
 	target.classList.toggle('hide');
 	// console.log(target);
@@ -134,6 +156,14 @@ function showContents(target) {
 
 	// console.log(contents.attributes);
 	// console.log(contents.getBoundingClientRect());
+}
+
+// Expects the <a> element
+// - needs href="#alpha"; title=""
+function setState(el) {
+	var stateObj = { section: el.target.hash };
+	history.pushState(stateObj, el.target.title, el.target.href);
+
 }
 
 function initState() {
