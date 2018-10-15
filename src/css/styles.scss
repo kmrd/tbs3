@@ -216,7 +216,7 @@ nav {
 			pointer-events: none;
 
 			&.hide {
-				opacity: 0;
+				// opacity: 0;
 			}
 
 			a.section-link {
@@ -236,27 +236,34 @@ nav {
 
 .contents {
 	text-align: center;
-	// display: flex;
-	// flex-direction: row;
-	// justify-contents: flex-start;
-	// align-items: stretch;
-	// display: none;
 
 	.pane {
 		display: none;
-		overflow-x: hidden;
-		// display: flex;
-		// flex: 1;
+
+		opacity: 0;
 
 		&.active {
 			display: block; 
-			width: calc(100vw * (30/32));
+			// width: calc(100vw * (30/32));
+			max-width: 100%;
+
+			opacity: 1;
+			-webkit-transition: opacity 1s ease-in-out;
+	        -moz-transition: opacity 1s ease-in-out;
+	        -ms-transition: opacity 1s ease-in-out;
+	        -o-transition: opacity 1s ease-in-out;
+			transition: opacity 1s ease-in-out;
+			// width: 100%;
+		}
+		&.active:nth-of-type(1) {
+			padding-right: calc(100vw * (2/32) / 1.02);
 		}
 		&.active:nth-of-type(2) {
-			padding-left: calc(100vw * (1/32));
+			padding-left: calc(100vw * (1/32) / 1.02);
+			padding-right: calc(100vw * (1/32) / 1.02);
 		}
 		&.active:nth-of-type(3) {
-			padding-left: calc(100vw * (2/32));
+			padding-left: calc(100vw * (2/32) / 1.02);
 		}
 
 		&#design .feature {
@@ -280,10 +287,10 @@ nav {
 			background-repeat: no-repeat;
 			background-size: cover;
 			height: 100vh;
-			width: 100%;
+			max-width: 100%;
 
 			margin-bottom: -15vh;
-			overflow: hidden;
+			overflow-x: hidden;
 
 
 			h1 {
