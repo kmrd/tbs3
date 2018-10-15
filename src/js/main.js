@@ -1,12 +1,8 @@
 // TODO: Make ES6 style classes? Use () => {} notation (needs transpiling)
 // TODO: Use Babel to transform Classes into something that IE11 can interpret?
 
-// var last_known_scroll_position;
-// var isIntroFrozen; // freezes the intro screen in place
 var isShowingContents; // if the nav sections are showing their content
 
-// var intro; 	// intro section
-// var introBtn; // ScrollDown button on the intro pane
 var parallaxInstance;
 
 var navShutters;
@@ -17,8 +13,6 @@ var navLinks; // main content links
 // var hamburgerLinks; // menu links
 var sections; // all the content sections
 var currentSection;
-
-// var shutterLinks; // both the shutterLinks and the hamburgerLinks
 
 
 function initIntro () {
@@ -101,7 +95,7 @@ function initNav() {
 
 			// If we're inside of a section, backout of it
 			if (isShowingContents && currentSection) {
-				console.log('backingout');
+				// console.log('backingout');
 				sectionTimeLine.add( TweenMax.to(window, 0.3, {
 					scrollTo: 0,
 					onComplete: setStateNav
@@ -135,25 +129,7 @@ function initNav() {
 	// 	nav.classList.toggle('visible');
 	// })
 }
-/*
-function makeLinkActive(target) {
-	// isIntroFrozen = true;
-	isShowingContents = true;
 
-	window.scrollTo(0,0);
-
-	// for(let i = 0; i < sections.length; i++) {
-	// 	s = sections[i];
-	// console.log(target.hash.substr(1));
-	console.log(target);
-	target.classList.add('active');
-	// 	if(s.id === target.hash.substr(1)) {
-	// 		s.classList.add('active');
-	// 	} else {
-	// 		s.classList.remove('active');
-	// 	}
-	// }
-}*/
 
 // Do this to get back to 3 shutters layout
 function setStateNav(params) {
@@ -191,23 +167,8 @@ function setStateContents(params) {
 	showContent(params);
 }
 function showContent(target) {
-	// console.log('showContents');
-	// console.log(target);
 	let link = target;
 	link.classList.add('active');
-	// console.log('hash', target.hash) ;
-	// console.log('href', target.href);
-	// .classList.toggle('active');
-	// target.classList.toggle('hide');
-	// console.log(target);
-	// document.querySelectorAll('.pane').
-	// document.querySelector(target.href).
-	// document.querySelector(target.href).
-	// document.querySelector('main').style.height='auto';
-	// document.querySelector('main').style.position='relative';
-
-	// console.log(contents.attributes);
-	// console.log(contents.getBoundingClientRect());
 }
 
 // Expects the <a> element
