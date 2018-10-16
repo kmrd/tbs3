@@ -10,6 +10,24 @@ body {
 .sr {
   display: none; }
 
+@keyframes sectionH1Fill {
+  from {
+    bottom: 0em; }
+  to {
+    bottom: -1.5em; } }
+
+@keyframes sectionH1 {
+  from {
+    left: -5em; }
+  to {
+    left: .5; } }
+
+@keyframes sectionContents {
+  from {
+    margin-top: 0; }
+  to {
+    margin-top: -13vh; } }
+
 header {
   /*display: none; */
   position: fixed;
@@ -119,7 +137,7 @@ nav {
   justify-content: flex-start;
   align-items: stretch;
   pointer-events: none;
-  z-index: 2; }
+  z-index: 10; }
   nav a {
     display: flex;
     flex: 1;
@@ -127,7 +145,7 @@ nav {
     overflow-x: hidden;
     width: 100%;
     height: 100%;
-    background-position: center center;
+    background-position: 50% 50%;
     background-repeat: no-repeat;
     background-size: cover;
     pointer-events: auto; }
@@ -159,57 +177,217 @@ nav {
     .contents .pane.active {
       display: block;
       max-width: 100%;
-      opacity: 1;
-      -webkit-transition: opacity 1s ease-in-out;
-      -moz-transition: opacity 1s ease-in-out;
-      -ms-transition: opacity 1s ease-in-out;
-      -o-transition: opacity 1s ease-in-out;
-      transition: opacity 1s ease-in-out; }
-    .contents .pane.active:nth-of-type(1) {
+      opacity: 1; }
+      .contents .pane.active h1 {
+        animation-name: sectionH1;
+        animation-duration: .6s;
+        animation-fill-mode: both;
+        animation-delay: 1s; }
+        .contents .pane.active h1::after {
+          animation-name: sectionH1Fill;
+          animation-duration: .6s;
+          animation-fill-mode: both;
+          animation-delay: 1.6s; }
+      .contents .pane.active .details {
+        animation-name: sectionContents;
+        animation-duration: 1s;
+        animation-fill-mode: both;
+        animation-delay: 1s; }
+    .contents .pane:nth-of-type(1) {
       padding-right: calc(100vw * (2/32) / 1.02); }
-    .contents .pane.active:nth-of-type(2) {
+    .contents .pane:nth-of-type(2) {
       padding-left: calc(100vw * (1/32) / 1.02);
       padding-right: calc(100vw * (1/32) / 1.02); }
-    .contents .pane.active:nth-of-type(3) {
+    .contents .pane:nth-of-type(3) {
       padding-left: calc(100vw * (2/32) / 1.02); }
     .contents .pane#design .feature {
       background-image: url("/imgs/BL9NruAgfOY.jpg"); }
     .contents .pane#dev .feature {
       background-image: url("/imgs/tumblr_nhdfwyMrPL1sxm4gzo10_1280.jpg"); }
-    .contents .pane#dev h1 {
-      text-transform: lowercase; }
     .contents .pane#about .feature {
       background-image: url("/imgs/tumblr_nc6e88JZP11rnmn4zo1_1280.jpg"); }
+    .contents .pane#design .details {
+      background-color: #ffffff;
+      background-image: url("/imgs/bg.svg"); }
+    .contents .pane#dev .details {
+      color: #ffffff;
+      background-color: #3a3a3a;
+      background-image: url("/imgs/bg-dark.svg"); }
+      .contents .pane#dev .details .work h3, .contents .pane#dev .details .work ul {
+        background-color: #555555;
+        color: #ffffff; }
+        .contents .pane#dev .details .work h3 small, .contents .pane#dev .details .work ul small {
+          border-color: #bbbbbb; }
+    .contents .pane#about .details {
+      background-color: #ffffff;
+      background-image: url("/imgs/bg.svg"); }
+    .contents .pane#dev h1 {
+      text-transform: lowercase;
+      color: #ffffff;
+      background-color: #3a3a3a; }
     .contents .pane .feature {
       position: relative;
       background-position: center center;
       background-repeat: no-repeat;
       background-size: cover;
-      height: 100vh;
+      min-height: 100vh;
       max-width: 100%;
-      margin-bottom: -15vh;
-      overflow-x: hidden; }
+      overflow: hidden; }
       .contents .pane .feature h1 {
         position: absolute;
         bottom: 15vh;
         left: .5em;
-        width: 100%;
         text-align: left;
         color: #ffffff;
         font-size: 4rem;
         line-height: 1.5em;
         font-weight: normal;
-        margin: 0; }
+        margin: 0;
+        overflow: hidden; }
         .contents .pane .feature h1::before {
           content: '/';
           color: orange;
           font-weight: bold; }
+        .contents .pane .feature h1::after {
+          content: ' ';
+          position: absolute;
+          bottom: -1.5em;
+          left: 0;
+          background-color: orange;
+          height: 1.5em;
+          width: 100%; }
     .contents .pane .details {
-      background-color: #fff; }
-      .contents .pane .details::before {
-        content: ' ';
-        background-color: #ffffff;
-        height: 5vh;
-        width: 100%;
-        display: block;
-        position: relative; }
+      margin-top: -18vh;
+      position: relative;
+      padding-top: 2em;
+      padding-bottom: 10em;
+      background-repeat: repeat;
+      background-size: 1em; }
+      .contents .pane .details blockquote {
+        font-size: 1.6rem;
+        line-height: 1.8em;
+        margin-bottom: 2.5em;
+        font-weight: normal; }
+        .contents .pane .details blockquote em {
+          color: orange;
+          font-style: normal; }
+        .contents .pane .details blockquote::before, .contents .pane .details blockquote::after {
+          content: ' ';
+          background-color: orange;
+          height: 2px;
+          width: 10em;
+          position: relative;
+          display: block;
+          overflow: hidden;
+          text-align: center;
+          margin-left: auto;
+          margin-right: auto; }
+      .contents .pane .details ul.work {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-direction: column; }
+        .contents .pane .details ul.work > li {
+          display: flex;
+          max-width: 80%;
+          margin-bottom: 6em; }
+          .contents .pane .details ul.work > li a {
+            display: flex;
+            flex-direction: row;
+            color: #000000;
+            background-color: #ffffff;
+            text-decoration: none;
+            position: relative;
+            width: 40em;
+            max-width: 80vw;
+            height: 27em;
+            max-height: 60vh;
+            box-shadow: 1px 5px 15px rgba(0, 0, 0, 0.3);
+            border-radius: .25em;
+            background-position: center center;
+            background-repeat: no-repeat;
+            background-size: cover; }
+            .contents .pane .details ul.work > li a .copy {
+              position: relative;
+              height: 100%;
+              width: 100%; }
+              .contents .pane .details ul.work > li a .copy h3 {
+                position: absolute;
+                bottom: -.8em;
+                left: -2em;
+                background-color: #ffffff;
+                font-size: 2rem;
+                font-weight: normal;
+                padding: .5em .5em 0 .5em;
+                margin: 0;
+                box-shadow: 1px 5px 15px rgba(0, 0, 0, 0.2);
+                border-radius: .05em;
+                text-align: right; }
+                .contents .pane .details ul.work > li a .copy h3 small {
+                  font-size: 1rem;
+                  border-top: 2px solid #888888;
+                  width: 100%;
+                  display: block;
+                  text-align: right;
+                  margin-top: 1em;
+                  line-height: 3em; }
+              .contents .pane .details ul.work > li a .copy ul {
+                position: absolute;
+                right: -2em;
+                top: 1em;
+                font-size: .8rem;
+                background-color: #ffffff;
+                padding: .8em 1.25em .8em 2.3em;
+                list-style: disc;
+                box-shadow: 1px 5px 15px rgba(0, 0, 0, 0.2);
+                border-radius: .05em; }
+                .contents .pane .details ul.work > li a .copy ul li {
+                  text-align: left;
+                  line-height: 1.8em; }
+      .contents .pane .details .logos {
+        margin-bottom: 5em; }
+        .contents .pane .details .logos h2 {
+          font-weight: normal; }
+        .contents .pane .details .logos em {
+          color: orange; }
+        .contents .pane .details .logos ul {
+          width: 40em;
+          max-width: 80vw;
+          display: flex;
+          flex-direction: row;
+          justify-content: space-around;
+          align-items: center;
+          list-style: none;
+          margin-left: auto;
+          margin-right: auto; }
+      .contents .pane .details .avatar {
+        height: 15em;
+        border-radius: 7.5em;
+        margin-bottom: 3em; }
+      .contents .pane .details .personal {
+        display: flex;
+        justify-content: space-around;
+        align-items: flex-start;
+        flex-direction: row;
+        width: 50em;
+        max-width: 90vw;
+        margin-left: auto;
+        margin-right: auto;
+        margin-bottom: 5em; }
+        .contents .pane .details .personal > div {
+          display: flex;
+          flex: 1;
+          flex-direction: column;
+          align-items: center; }
+          .contents .pane .details .personal > div h3 {
+            font-weight: normal;
+            font-size: 1.5rem;
+            line-height: 1.8em;
+            margin: 0;
+            border-bottom: 1px solid #aaaaaa; }
+          .contents .pane .details .personal > div ul {
+            list-style: none;
+            padding: 0;
+            margin: 0; }
+            .contents .pane .details .personal > div ul li {
+              line-height: 1.8em; }

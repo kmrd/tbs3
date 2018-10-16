@@ -89,7 +89,7 @@ function initNav() {
 			e.preventDefault();
 			e.stopPropagation();
 
-			setState(e.target);
+			setState(e);
 
 			sectionTimeLine = new TimelineLite();
 
@@ -185,7 +185,8 @@ function initState() {
 			case "#design":
 				console.log('design only');
 				introTimeLine.play();
-				// TweenLite.to(window, 0.1, {scrollTo:{y:'100'}});
+				document.querySelector('#design').click();
+				// TweenLite.to(window, 0.1, {scrollTo:{y:'150'}});
 				break;
 			case "#dev":
 				console.log('dev only');
@@ -220,11 +221,30 @@ function initParallax() {
 	});
 }
 
+function initContentParallax() {
+	window.addEventListener('scroll', updateContentParallax);
+}
+function updateContentParallax() {
+	// function parallaxScroll(){
+    let scrolled = window.pageYOffset / window.innerHeight * 100;
+
+    let h1 = document.querySelectorAll('.contents .pane h1');
+	TweenMax.to(h1, 0.8, {
+		ease: Expo.easeOut,
+		bottom: 15 + (scrolled * 0.5) + 'vh' });
+
+    let feature = document.querySelectorAll('.contents .pane .feature')
+	TweenMax.to(feature, 0.8, {
+		ease: Expo.easeOut,
+		backgroundPosition: '50% ' + (50 + (scrolled * 0.1)) + '%' });
+}
+
 
 window.addEventListener('DOMContentLoaded', function() {
 	initParallax();
 	initIntro();
 	initNav();
+	initContentParallax();
 	// initState(); // This is called in initIntro -- AFTER the timelines are defined
 	// console.log('DOM loaded')
 });

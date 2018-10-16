@@ -1,12 +1,8 @@
 // TODO: Make ES6 style classes? Use () => {} notation (needs transpiling)
 // TODO: Use Babel to transform Classes into something that IE11 can interpret?
 
-// var last_known_scroll_position;
-// var isIntroFrozen; // freezes the intro screen in place
 var isShowingContents; // if the nav sections are showing their content
 
-// var intro; 	// intro section
-// var introBtn; // ScrollDown button on the intro pane
 var parallaxInstance;
 
 var navShutters;
@@ -17,8 +13,6 @@ var navLinks; // main content links
 // var hamburgerLinks; // menu links
 var sections; // all the content sections
 var currentSection;
-
-// var shutterLinks; // both the shutterLinks and the hamburgerLinks
 
 
 function initIntro () {
@@ -95,13 +89,13 @@ function initNav() {
 			e.preventDefault();
 			e.stopPropagation();
 
-			setState(e.target);
+			setState(e);
 
 			sectionTimeLine = new TimelineLite();
 
 			// If we're inside of a section, backout of it
 			if (isShowingContents && currentSection) {
-				console.log('backingout');
+				// console.log('backingout');
 				sectionTimeLine.add( TweenMax.to(window, 0.3, {
 					scrollTo: 0,
 					onComplete: setStateNav
@@ -135,25 +129,7 @@ function initNav() {
 	// 	nav.classList.toggle('visible');
 	// })
 }
-/*
-function makeLinkActive(target) {
-	// isIntroFrozen = true;
-	isShowingContents = true;
 
-	window.scrollTo(0,0);
-
-	// for(let i = 0; i < sections.length; i++) {
-	// 	s = sections[i];
-	// console.log(target.hash.substr(1));
-	console.log(target);
-	target.classList.add('active');
-	// 	if(s.id === target.hash.substr(1)) {
-	// 		s.classList.add('active');
-	// 	} else {
-	// 		s.classList.remove('active');
-	// 	}
-	// }
-}*/
 
 // Do this to get back to 3 shutters layout
 function setStateNav(params) {
@@ -191,23 +167,8 @@ function setStateContents(params) {
 	showContent(params);
 }
 function showContent(target) {
-	// console.log('showContents');
-	// console.log(target);
 	let link = target;
 	link.classList.add('active');
-	// console.log('hash', target.hash) ;
-	// console.log('href', target.href);
-	// .classList.toggle('active');
-	// target.classList.toggle('hide');
-	// console.log(target);
-	// document.querySelectorAll('.pane').
-	// document.querySelector(target.href).
-	// document.querySelector(target.href).
-	// document.querySelector('main').style.height='auto';
-	// document.querySelector('main').style.position='relative';
-
-	// console.log(contents.attributes);
-	// console.log(contents.getBoundingClientRect());
 }
 
 // Expects the <a> element
@@ -224,7 +185,8 @@ function initState() {
 			case "#design":
 				console.log('design only');
 				introTimeLine.play();
-				// TweenLite.to(window, 0.1, {scrollTo:{y:'100'}});
+				document.querySelector('#design').click();
+				// TweenLite.to(window, 0.1, {scrollTo:{y:'150'}});
 				break;
 			case "#dev":
 				console.log('dev only');
@@ -259,11 +221,30 @@ function initParallax() {
 	});
 }
 
+function initContentParallax() {
+	window.addEventListener('scroll', updateContentParallax);
+}
+function updateContentParallax() {
+	// function parallaxScroll(){
+    let scrolled = window.pageYOffset / window.innerHeight * 100;
+
+    let h1 = document.querySelectorAll('.contents .pane h1');
+	TweenMax.to(h1, 0.8, {
+		ease: Expo.easeOut,
+		bottom: 15 + (scrolled * 0.5) + 'vh' });
+
+    let feature = document.querySelectorAll('.contents .pane .feature')
+	TweenMax.to(feature, 0.8, {
+		ease: Expo.easeOut,
+		backgroundPosition: '50% ' + (50 + (scrolled * 0.1)) + '%' });
+}
+
 
 window.addEventListener('DOMContentLoaded', function() {
 	initParallax();
 	initIntro();
 	initNav();
+	initContentParallax();
 	// initState(); // This is called in initIntro -- AFTER the timelines are defined
 	// console.log('DOM loaded')
 });

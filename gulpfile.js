@@ -98,6 +98,8 @@ gulp.task('copy_imgs', function(){
 
 
 gulp.task('build-html', function(){
+   gulp.src('src/*.ico')
+    .pipe(gulp.dest('build'))
   return gulp.src('src/*.html')
     // .pipe(less())
     // .pipe(minifyCSS())
