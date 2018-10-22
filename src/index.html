@@ -90,7 +90,7 @@
 
         <ul class="work">
           <li>
-            <a href="/design/stopsign" data-contents="design-stopsign" data-class="design"
+            <a href="/design/stopsign" class="modal-btn" data-contents="design-stopsign" data-class="design"
               style="background-image: url('/imgs/stopsign-1.jpg');">
               <div class="copy">
                 <h3>Stop Sign Survey App <small>Case Study</small></h3>
@@ -103,7 +103,7 @@
             </a>
           </li>
           <li>
-            <a href="/design/sn" data-target="#workmodal" data-contents="design-studionostalgia" data-class="design"
+            <a href="/design/sn" class="modal-btn" data-target="#workmodal" data-contents="design-sn" data-class="design"
               style="background-image: url('/imgs/sn-camera.jpg');">
               <div class="copy">
                 <h3>Studio Nostalgia <small>Rebrand</small></h3>
@@ -116,7 +116,7 @@
             </a>
           </li>
           <li>
-            <a href="/design/stopsign" data-target="#workmodal" data-contents="design-joyride" data-class="design"
+            <a href="/design/stopsign" class="modal-btn" data-target="#workmodal" data-contents="design-joyride" data-class="design"
               style="background-image: url('/imgs/joyride-cad-5.jpg'); background-position: 10% center;">
               <div class="copy">
                 <h3>Joyride Smart Bicycle Lock <small>Physical Prototyping</small></h3>
@@ -146,9 +146,31 @@
           <span></span>
         </blockquote>
 
+        <div class="logos">
+          <h2>Have <em>built</em> with:</h2>
+          <ul>
+            <li><img src="/imgs/angular.svg" alt="Angular"></li>
+            <li><img src="/imgs/html5.svg" alt="HTML 5"></li>
+            <li><img src="/imgs/css3.svg" alt="CSS3"></li>
+            <li><img src="/imgs/ror.svg" alt="Ruby on Rails"></li>
+            <li><img src="/imgs/jquery.svg" alt="jQuery"></li>
+            <li><img src="/imgs/php.svg" alt="PHP"></li>
+          </ul>
+        </div>
+
+        <div class="logos">
+          <h2>Have <em>deployed</em> with:</h2>
+          <ul>
+            <li><img src="/imgs/aws.svg" alt="Amazon AWS"></li>
+            <li><img src="/imgs/docker.svg" alt="Docker"></li>
+            <li><img src="/imgs/vagrant.svg" alt="Vagrant"></li>
+            <li><img src="/imgs/heroku.svg" alt="Heroku"></li>
+          </ul>
+        </div>
+
         <ul class="work">
           <li>
-            <a href="/dev/scrim" data-target="#workmodal" data-contents="dev-scrim" data-class="develop"
+            <a href="/dev/scrim" class="modal-btn" data-target="#workmodal" data-contents="dev-scrim" data-class="develop"
               style="background-image: url('imgs/scrim.jpg'); background-size: contain; background-color: #e9f6ff;">
               <div class="copy">
                 <h3>Scrim <small>Stealth startup in eSports</small></h3>
@@ -179,7 +201,7 @@
             </a>
           </li> -->
           <li>
-            <a href="/dev/foodr" data-target="#workmodal" data-contents="dev-foodr" data-class="develop"
+            <a href="/dev/foodr" class="modal-btn" data-target="#workmodal" data-contents="dev-foodr" data-class="develop"
               style="background-image: url('imgs/foodr.svg'); background-size: 60% 60%; background-color:#edaa0e;">
               <div class="copy">
                 <h3>Foodr <small>Food made by home cooks</small></h3>
@@ -193,7 +215,7 @@
             </a>
           </li>
           <li>
-            <a href="/dev/joyride" data-target="#workmodal" data-contents="dev-joyride" data-class="develop"
+            <a href="/dev/joyride" class="modal-btn" data-target="#workmodal" data-contents="dev-joyride" data-class="develop"
               style="background-image: url('/imgs/joyride.svg'); background-size: 50% 50%;">
               <div class="copy">
                 <h3>Joyride <small>A smart WiFi bicycle lock</small></h3>
@@ -208,28 +230,6 @@
           </li>
         </ul>
 
-
-        <div class="logos">
-          <h2>Have <em>built</em> with:</h2>
-          <ul>
-            <li><img src="/imgs/angular.svg" alt="Angular"></li>
-            <li><img src="/imgs/html5.svg" alt="HTML 5"></li>
-            <li><img src="/imgs/css3.svg" alt="CSS3"></li>
-            <li><img src="/imgs/ror.svg" alt="Ruby on Rails"></li>
-            <li><img src="/imgs/jquery.svg" alt="jQuery"></li>
-            <li><img src="/imgs/php.svg" alt="PHP"></li>
-          </ul>
-        </div>
-
-        <div class="logos">
-          <h2>Have <em>deployed</em> with:</h2>
-          <ul>
-            <li><img src="/imgs/aws.svg" alt="Amazon AWS"></li>
-            <li><img src="/imgs/docker.svg" alt="Docker"></li>
-            <li><img src="/imgs/vagrant.svg" alt="Vagrant"></li>
-            <li><img src="/imgs/heroku.svg" alt="Heroku"></li>
-          </ul>
-        </div>
         <!-- <img src="imgs/Chae_Eun41.jpg"> -->
       </div>
     </div>
@@ -285,6 +285,367 @@
         <!-- <img src="imgs/haneul__haneul_3___BbJcjNbFuCr___.jpg"> -->
       </div>
     </div>
+
+</section>
+
+
+<section id="modals">
+
+  <div class="section" id="design-stopsign">
+    <h1>
+        <span class="col-xs-4 col-sm-6 col-md-5">Stop Signs Survey App</span>
+        <small class="subtitle">UX Case Study</small>
+      </h1>
+      
+      <hr class="head">
+
+      <img src="/imgs/stopsign-1.jpg">
+
+      <div class="col-md-10 col-xs-12">
+
+        <blockquote><em>tldr; UI improvements were able to cut a project’s time in half.</em></blockquote>
+
+        <p>Initially, the interface placed fields in an arbitrary order according to the spreadsheet they will eventually populate. After observing users in the field, it became evident that the mental workflow did not match the field ordering. eg. the type of support is obvious from a far during an approach, yet this field was near to the end of the form.</p>
+
+        <p class="text-center">
+          <img src="/imgs/stopsign-2.jpg"><br />
+          <em>Initial UI field ordering</em>
+        </p>
+
+        <hr>
+
+        <p>First improvements to change just the field ordering made the users more efficient and created fewer missed touches as they no longer had to scroll back and forth in the form.</p>
+
+        <p>Throughput increased from a baseline of 26.4 signs / hour to 42.62 / hour. An increase of 61.4%.</p>
+
+        <p class="text-center">
+          <img src="/imgs/sign-chart-1.svg">
+        </p>
+
+        <hr>
+
+        <p>The next set of improvements focused on collecting information in a ganged format to reduce redundant input. Notably, there are often several signs on a single sign pole (two street signs, an octagon stop sign, rectangular “All-way” card, rectangular black & white obstacle cards) where each entry would contain duplicate information regarding support type, GPS coordinates, intersection, etc.</p>
+
+        <p>The fields were again re-ordered to more closely match the mental model of data collection by the users. As well, they were given instructions to record each support as a single entry, and combine the information for all signs into a single field, separated by a space.</p>
+
+        <p>I then wrote a simple script that took the exported .CSV file, processed through the fields to separate out each sign, and generate a final .CSV file to be used as the final deliverable.</p>
+
+        <p>This method increased the throughput to a massive 85.5 signs / hour.</p>
+
+        <p class="text-center">
+          <img src="/imgs/sign-chart-2.svg">
+        </p>
+        
+        <p>The improvements culminated in the project time being cut in half. Due to the project being a fixed tender, this represented a massive cost savings.</p>
+
+        <hr>
+
+        <blockquote class="result">
+          <small>Final Result</small><br />
+          Project time cut in half
+        </blockquote>
+
+        <hr>
+
+        <p>Curious how UX can be used to accelerate your project? Give me a shout: hello@thoughtbubble.ca</p>
+    </div>
+  </div>
+
+  <div class="section" id="design-sn">
+    <h1>
+      <span class="col-xs-4 col-sm-6 col-md-5">Studio Nostalgia Rebrand</span>
+      <small class="subtitle">Brand Redesign</small>
+    </h1>
+    
+    <hr class="head">
+
+    <img src="/imgs/sn-camera.jpg">
+
+    <div class="col-md-10 col-xs-12">
+
+      <h2>Brief</h2>
+      <p>Client wanted to a refresh of their identity and customer facing sites.</p>
+
+      <p>They looking for a bold, extremely distinctive visual identity to separate themselves from the competition and to create a memorable impression when pitching.</p>
+
+      <hr>
+
+      <h2>Logo</h2>
+      <p>The were also to expand their business from strictly a graduation photography provider to a more media-based creative services. Using the node of retro elements present in their original identity, a set-top TV was selected as their new logo.</p>
+      <img src="/imgs/sn-logo.svg" class="img-fluid">
+
+      <hr>
+
+      <h2>Typography</h2>
+      <img src="/imgs/sn-font.svg" class="img-fluid">
+
+      <hr>
+
+      <h2>Brand Colours</h2>
+      <p>Taking cues from the bold palete of streetware fashion, a black and cherry red were selected to provide high a contrast look with a very vibrant accent.</p>
+      <div class="d-flex flex-row justify-content-around">
+        <div class="col-xs-6">
+          <div class="color-circle black">#000000</div>
+          <ul class="color-spec">
+            <li>Black</li>
+            <li><label>R - </label> 0</li>
+            <li><label>G - </label> 0</li>
+            <li><label>B - </label> 0</li>
+            <li><label>C - </label> 0%</li>
+            <li><label>M - </label> 0%</li>
+            <li><label>Y - </label> 0%</li>
+            <li><label>K - </label> 100%</li>
+          </ul>
+
+        </div>
+        <div class="col-xs-6">
+          <div class="color-circle red">#c40000</div>
+          <ul class="color-spec">
+            <li>Cherry</li>
+            <li><label>R - </label> 196</li>
+            <li><label>G - </label> 0</li>
+            <li><label>B - </label> 0</li>
+            <li><label>C - </label> 16%</li>
+            <li><label>M - </label> 100%</li>
+            <li><label>Y - </label> 100%</li>
+            <li><label>K - </label> 7%</li>
+          </ul>
+        </div>
+      </div>
+
+      <hr>
+
+      <h2>Website Treatment</h2>
+      <p>Taking cues from both modern and retro elements, a high-contrast treatment was selected.<p>
+      <p>Retro elements include lithographic treatment of hero image; bordered header panel; nods to art deco hairlines and shapes</p>
+      <img src="/imgs/sn-screenshot.jpg" class="img-fluid">
+
+      <hr>
+
+      <h2>Selected Process Work</h2>
+      <div class="d-flex flex-row justify-content-around">
+        <div class="col-xs-6">
+          <img src="/imgs/sn-logo-process.jpg" class="img-fluid">
+        </div>
+        <div class="col-xs-6">
+          <img src="/imgs/sn-design-language.jpg" class="img-fluid">
+        </div>
+      </div>
+      
+      <hr>
+
+      <p>Curious how UI can better communicate your brand values? Give me a shout: hello@thoughtbubble.ca</p>
+
+    </div>
+  </div>
+
+  <div class="section" id="design-joyride">
+    <h1>
+      <span class="col-xs-4 col-sm-6 col-md-5">Joyride Prototype</span>
+      <small class="subtitle">CAD & Physical Model</small>
+    </h1>
+    
+    <hr class="head">
+
+    <img src="/imgs/joyride-cad-5.jpg">
+
+    <div class="col-md-10 col-xs-12">
+
+      <p>A smart wifi bicycle lock.</p>
+
+      <p>Device tracks unauthorized movement of the bike via an SMT accelerometer and relays positions via publically accessible wifi spots (eg. Starbucks, etc). It reports position to a webserver that then texts the owner and provides real-time tracking on an interactive, web viewable map.</p>
+
+      <p>Design is meant to hide-in-plain-sight to avoid detection and defeat by theives. Initial ideas of hiding it inside the handle bars or the seat stem were rejected due to radio interference issues that affected maximum range.</p>
+
+      <p>Form factor and dimensions were iterated on using sponge foam.</p>
+      
+      <p><img src="/imgs/joyride-cad-1.jpg" class="img-fluid"></p>
+
+      <p>Initial prototype was 3d printed with a hollow cavity for the electronics.</p>
+      <p><img src="/imgs/joyride-cad-3.jpg" class="img-fluid"></p>
+
+      <p><img src="/imgs/joyride-cad-2.jpg" class="img-fluid"></p>
+
+      <p>An ABS bottleholder was added to complete the prototype</p>
+
+      <p><img src="/imgs/joyride-cad-4.jpg" class="img-fluid"></p>
+
+      <p><img src="/imgs/joyride-cad-6.jpg" class="img-fluid"></p>
+      
+      <hr>
+
+      <p>Curious how UX can shape future products? Give me a shout: hello@thoughtbubble.ca</p>
+
+    </div>
+  </div>
+
+  <div class="section" id="dev-scrim">
+    <h1>
+      <span class="col-xs-4 col-sm-6 col-md-5">Scrim</span>
+      <small class="subtitle">eSports Scheduling</small>
+    </h1>
+    
+    <hr class="head">
+
+    <img src="/imgs/scrim-splash.jpg">
+
+    <div class="col-md-10 col-xs-12">
+
+      <p>A platform that allows professionals and other experts to make their service available to users looking for coaching, power levelling and other in-game services.</p>
+
+      <hr>
+
+      <div class="d-flex flex-direction-row justify-content-around">
+        <div>
+          <h3>Front End</h3>
+          <ul>
+            <li>Angular 4</li>
+            <li>HTML</li>
+            <li>CSS (SASS)</li>
+            <li>Deployed on AWS EC2</li>
+          </ul>
+        </div>
+        <div>
+          <h3>Back End</h3>
+          <ul>
+            <li>NodeJS 4</li>
+            <li>AWS dynamoDB</li>
+            <li>AWS Cognito</li>
+            <li>Deployed on AWS Lambda</li>
+          </ul>
+        </div>
+      </div>
+
+      <hr>
+
+      <p><img src="/imgs/scrim-thumb-1.jpg" class="img-fluid"></p>
+
+      <h2>Selected Features</h2>
+      <p>Mobile-first development.</p>
+      <p>Implemented using Angular Material and Flexbox</p>
+      <p>Schedule owners able to define availability windows based on a weekly schedule.</p>
+      <p>Timeslots are selectable on an infinite-roll into the future.</p>
+      <p>Users are searchable using an autocomplete system</p>
+
+      <img src="/imgs/scrim-thumb-2.jpg" class="img-fluid">
+
+      <hr>
+
+      <p>Curious how to make ideas into an interactive reality? Give me a shout: hello@thoughtbubble.ca</p>
+
+    </div>
+  </div>
+
+  <div class="section" id="dev-foodr">
+    <h1>
+      <span class="col-xs-4 col-sm-6 col-md-5">Foodr</span>
+      <small class="subtitle">Food Sharing Platform</small>
+    </h1>
+    
+    <hr class="head">
+
+    <img src="/imgs/foodr.jpg">
+
+    <div class="col-md-10 col-xs-12">
+
+      <p>A way for home cooks to put their food for sale for others to discover and enjoy locally. Enabling small producers to find new customers, gain exposure, and grow their business.</p>
+
+      <hr>
+
+      <div class="d-flex flex-direction-row justify-content-around">
+        <div>
+          <h3>Front End</h3>
+          <ul>
+            <li>.ERB HTML5</li>
+            <li>CSS3 (LESS)</li>
+            <li>jQuery</li>
+          </ul>
+        </div>
+        <div>
+          <h3>Back End</h3>
+          <ul>
+            <li>Ruby on Rails</li>
+            <li>ActiveRecord</li>
+            <li>MySQL</li>
+            <li>AWS S3</li>
+            <li>Deployed on Heroku</li>
+          </ul>
+        </div>
+      </div>
+
+      <hr>
+
+      <h2>Selected Features</h2>
+      <p>Front end implemented using Bootstrap grid and components for rapid development</p>
+      <p>Photo uploads stored on to AWS S3</p>
+      <p>Food creators able to open a store; populate with items; keep track of orders and order status.</p>
+      <p>Food eaters able to search via several criteria of food, username, shop name, etc.</p>
+
+      <hr>
+
+      <p>Curious how to create new platforms people can use together? Give me a shout: hello@thoughtbubble.ca</p>
+    </div>
+  </div>
+
+  <div class="section" id="dev-joyride">
+    <h1>
+      <span class="col-xs-4 col-sm-6 col-md-5">Joyride</span>
+      <small class="subtitle">A Smart WiFi Bicycle Lock</small>
+    </h1>
+    
+    <hr class="head">
+
+    <img src="/imgs/joyride-1.jpg">
+
+    <div class="col-md-10 col-xs-12">
+
+      <p>Device tracks unauthorized movement of the bike via an SMT accelerometer and relays positions via publically accessible wifi spots (eg. Starbucks, etc). It reports position to a webserver that then texts the owner and provides real-time tracking on an interactive, web viewable map.</p>
+
+      <hr>
+
+      <div class="d-flex flex-direction-row justify-content-around">
+        <div>
+          <h3>Front End</h3>
+          <ul>
+            <li>HTML5</li>
+            <li>jQuery</li>
+          </ul>
+        </div>
+        <div>
+          <h3>Back End</h3>
+          <ul>
+            <li>Ruby on Rails</li>
+            <li>Twillo</li>
+            <li>ActiveRecord</li>
+            <li>MySQL</li>
+          </ul>
+        </div>
+      </div>
+
+      <hr>
+
+      <h2>Selected Features</h2>
+      <p>Lock can be "locked" via the interface. If motion is sensed while locked, position alerts begin being tracked.</p>
+      <p>Uses Twillo API to send SMS with link to deep-linked website showing real-time position.</p>
+      <p>Position tracked and timestamped in an internal queue that is then sent to the server when WiFi is connected.</p>
+
+      <p>Historical positions can be saved to give a Journey.</p>
+
+      <p><img src="/imgs/joyride-2.jpg" class="img-fluid"></p>
+
+      <hr>
+
+      <p>Curious how to create new platforms people can use together? Give me a shout: hello@thoughtbubble.ca</p>
+
+    </div>
+  </div>
+
+  <div class="close" id="close-btn">
+    <div>
+      <span></span>
+      <span></span>
+    </div>
+  </div>
 
 </section>
 

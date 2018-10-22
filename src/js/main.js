@@ -163,7 +163,6 @@ function setTransitionStateToContents(target) {
 	content.classList.add('active');
 }
 function setStateContents(params) {
-	console.log(params);
 	showContent(params);
 }
 function showContent(target) {
@@ -239,12 +238,43 @@ function updateContentParallax() {
 		backgroundPosition: '50% ' + (50 + (scrolled * 0.1)) + '%' });
 }
 
+function initModal() {
+	let btns = document.querySelectorAll('.modal-btn');
+
+	for(let i = 0; i < btns.length; i++) {
+		var btn = btns[i];
+
+		btn.addEventListener('click', function(e) {
+			e.preventDefault();
+
+			var target = e.target.parentNode.dataset.contents;
+
+			document.getElementById('modals').classList.add('show');
+
+			document.getElementById(target).classList.add('show');
+		});
+	}
+
+	let close = document.getElementById('close-btn').addEventListener('click', function(e) {
+
+		document.getElementById('modals').classList.remove('show');
+
+		var sections = document.querySelectorAll('#modals .section');
+		for(let j = 0; j < sections.length; j++) {
+			// console.log(sections[j]);
+			sections[j].classList.remove('show');
+		}
+	});
+}
+
 
 window.addEventListener('DOMContentLoaded', function() {
 	initParallax();
 	initIntro();
 	initNav();
 	initContentParallax();
+
+	initModal();
 	// initState(); // This is called in initIntro -- AFTER the timelines are defined
 	// console.log('DOM loaded')
 });
