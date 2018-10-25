@@ -326,7 +326,7 @@ function initModal() {
 			bubble.classList.add('show');
 
 			var coords = clickedBtn.getBoundingClientRect();
-			console.log('start coords:', coords);
+			// console.log('start coords:', coords);
 			var scrolled = window.scrollY;
 			bubble.style.top = coords.top + scrolled +'px';
 			bubble.style.left = coords.left +'px';

@@ -227,6 +227,10 @@ nav {
     background-repeat: no-repeat;
     background-size: cover;
     pointer-events: auto; }
+    nav a span {
+      opacity: 1;
+      -webkit-transition: .5s opacity;
+      transition: .5s opacity; }
     nav a.design {
       background-image: url("/imgs/BL9NruAgfOY.jpg"); }
     nav a.dev {
@@ -244,7 +248,10 @@ nav {
       color: #ffffff;
       font-size: 3rem;
       line-height: 1.2em;
-      pointer-events: none; }
+      pointer-events: none;
+      opacity: 1;
+      -webkit-transition: 1s opacity;
+      transition: 1s opacity; }
       nav a span ::before {
         content: '/';
         color: orange; }
@@ -258,7 +265,11 @@ nav {
       background-color: #000000; }
     nav a.active {
       opacity: 0;
+      -webkit-transition: 0.5s opacity;
+      transition: 0.5s opacity;
       pointer-events: none; }
+      nav a.active span {
+        opacity: 0; }
       nav a.active a.section-link {
         display: none; }
 
@@ -266,7 +277,9 @@ nav {
   text-align: center; }
   .contents .pane {
     display: none;
-    opacity: 0; }
+    opacity: 0;
+    -webkit-transition: .5s opacity;
+    transition: .5s opacity; }
     .contents .pane.active {
       display: block;
       max-width: 100%;
@@ -609,7 +622,14 @@ nav {
     padding-bottom: 3em;
     display: none; }
     #modals .section img {
-      max-width: 100%; }
+      max-width: 100%;
+      -webkit-box-shadow: 1px 5px 10px rgba(0, 0, 0, 0.1) inset;
+      box-shadow: 1px 5px 10px rgba(0, 0, 0, 0.1) inset;
+      padding: 2em; }
+      #modals .section img.feature {
+        -webkit-box-shadow: none;
+        box-shadow: none;
+        padding: 0; }
     #modals .section.show {
       display: block; }
     #modals .section h1 {
@@ -618,25 +638,52 @@ nav {
       font-weight: normal; }
       #modals .section h1 .subtitle {
         display: block; }
+    #modals .section h2 {
+      text-align: center; }
     #modals .section hr {
-      margin: 4em 0;
-      border: 3px solid #000000; }
+      margin: 4em auto;
+      border: 3px solid #000000;
+      width: 20em; }
     #modals .section hr.head {
       margin-top: 2rem;
       margin-bottom: 2rem;
-      border: 3px solid #000000; }
+      border: 3px solid #000000;
+      width: 100%; }
     #modals .section blockquote {
       border: 1px solid #000000;
       border-left: none;
       border-right: none;
-      margin: 4em;
+      margin: 4em auto;
       padding: 2em 0;
-      text-align: center; }
+      text-align: center;
+      width: 16em; }
     #modals .section p {
       line-height: 1.8em;
-      margin-bottom: 2.4em; }
+      margin: 0 auto 2.4em auto;
+      width: 40em; }
       #modals .section p.text-center {
         text-align: center; }
+    #modals .section ul {
+      width: 40em;
+      margin: 0 auto 2.4em auto; }
+      #modals .section ul li {
+        line-height: 1.8em; }
+    #modals .section .columns {
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-pack: center;
+      -ms-flex-pack: center;
+      justify-content: center;
+      -webkit-box-align: start;
+      -ms-flex-align: start;
+      align-items: flex-start;
+      -ms-flex-wrap: flex-wrap;
+      flex-wrap: flex-wrap; }
+      #modals .section .columns .col {
+        padding: 0 4em; }
+        #modals .section .columns .col ul {
+          width: auto; }
   #modals .close {
     position: fixed;
     top: .5rem;
@@ -675,16 +722,6 @@ nav {
     object-fit: cover;
     width: 100%;
     height: 100%; }
-
-#design-sn .columns {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-pack: distribute;
-  justify-content: space-around;
-  -webkit-box-align: start;
-  -ms-flex-align: start;
-  align-items: flex-start; }
 
 #design-sn .color-circle {
   color: #fff;
