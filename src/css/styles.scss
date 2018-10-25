@@ -99,7 +99,7 @@ header {
 		opacity: 0;
 		pointer-events: none;
 
-		transition: 1.5s opacity;
+		transition: opacity 1.5s, font-size .5s;
 
 		// transition: .5s all;
 
@@ -655,7 +655,7 @@ nav {
 	overflow-x: hidden;
 	overflow-y: auto;
 
-    transition: 1s all, .1s zIndex 1s;
+    transition: 1s all, .1s z-index 1s;
 	
 	display: block;
 

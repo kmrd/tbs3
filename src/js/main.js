@@ -26,21 +26,29 @@ function initIntro () {
 		
 		// Scroll the window. This triggers the intro 
 		// animation as if the user had scrolled themselves
+		var maxHeight = Math.max(
+			document.body.scrollHeight, document.body.offsetHeight, 
+	        document.documentElement.clientHeight, document.documentElement.scrollHeight,
+            document.documentElement.offsetHeight);
+		if(window.scrollY == maxHeight) {
+			window.scrollTo(0, 0);
+		}
 		TweenLite.to(window, 0.5, {scrollTo:{y:'100'}});
+
 	});
 
 	window.addEventListener('scroll', function(e) {
 		if(!isShowingContents) {
 
 			if ( last_known_scroll_position < window.scrollY ) {
-				history.pushState({ section: '#main' }, "Main", "#main");
-					parallaxInstance.disable();
+				// history.pushState({ section: '#main' }, "Main", "#main");
+				parallaxInstance.disable();
 
 				introTimeLine.play();
 				// document.querySelector('body').classList.add('main');
 			} else {
-				history.pushState({ section: '#home'}, "Home", "/");
-					parallaxInstance.enable();
+				// history.pushState({ section: '#home'}, "Home", "/");
+				parallaxInstance.enable();
 				introTimeLine.reverse();
 				// document.querySelector('body').classList.remove('main');
 			}
@@ -66,7 +74,7 @@ function initNav() {
 
 
 	// Check if there's a historic state to resume to
-	initState();
+	// initState();
 
 
 	for( let i = 0; i < navLinks.length; i++) {
@@ -198,6 +206,7 @@ function unsetStateContents() {
 function showContent(target) {
 	let link = target;
 	link.classList.add('active');
+	// console.log(target);
 }
 function hideContent() {
 	var links = document.querySelectorAll('a.section-link.active');
@@ -210,8 +219,8 @@ function hideContent() {
 // Expects the <a> element
 // - needs href="#alpha"; title=""
 function setState(el) {
-	var stateObj = { section: el.target.hash };
-	history.pushState(stateObj, el.target.title, el.target.href);
+	// var stateObj = { section: el.target.hash };
+	// history.pushState(stateObj, el.target.title, el.target.href);
 }
 
 function initState() {
@@ -387,6 +396,6 @@ window.addEventListener('DOMContentLoaded', function() {
 	// console.log('DOM loaded')
 });
 
-window.onload = function() {
-	console.log('all contents loaded');
-};
+// window.onload = function() {
+// 	console.log('all contents loaded');
+// };

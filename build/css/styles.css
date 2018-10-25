@@ -101,8 +101,8 @@ header {
     font-weight: bold;
     opacity: 0;
     pointer-events: none;
-    -webkit-transition: 1.5s opacity;
-    transition: 1.5s opacity; }
+    -webkit-transition: opacity 1.5s, font-size .5s;
+    transition: opacity 1.5s, font-size .5s; }
     header .nav-hamburger:hover {
       font-size: 1.25rem;
       -webkit-transition: .5s all;
@@ -600,8 +600,8 @@ nav {
   opacity: 0;
   overflow-x: hidden;
   overflow-y: auto;
-  -webkit-transition: 1s all, .1s zIndex 1s;
-  transition: 1s all, .1s zIndex 1s;
+  -webkit-transition: 1s all, .1s z-index 1s;
+  transition: 1s all, .1s z-index 1s;
   display: block; }
   #modals.design {
     color: #000000;
