@@ -53,6 +53,26 @@ body {
   to {
     margin-top: -13vh; } }
 
+@-webkit-keyframes introBtnBounce {
+  from {
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+    opacity: 1; }
+  to {
+    -webkit-transform: translateY(-0.4em);
+    transform: translateY(-0.4em);
+    opacity: .9; } }
+
+@keyframes introBtnBounce {
+  from {
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+    opacity: 1; }
+  to {
+    -webkit-transform: translateY(-0.4em);
+    transform: translateY(-0.4em);
+    opacity: .9; } }
+
 body.main .nav-hamburger {
   opacity: 1;
   -webkit-transition: 1.5s opacity;
@@ -182,14 +202,25 @@ section.intro {
     z-index: 101; }
     section.intro h1 a {
       color: orange;
-      text-decoration: none; }
+      text-decoration: none;
+      pointer-events: none; }
   section.intro a.introBtn {
     position: absolute;
     bottom: 1em;
     left: 50%;
     color: #ffffff;
     text-decoration: none;
-    z-index: 101; }
+    z-index: 101;
+    -webkit-animation-name: introBtnBounce;
+    animation-name: introBtnBounce;
+    -webkit-animation-duration: .4s;
+    animation-duration: .4s;
+    -webkit-animation-direction: alternate;
+    animation-direction: alternate;
+    -webkit-animation-iteration-count: infinite;
+    animation-iteration-count: infinite;
+    -webkit-animation-timing-function: ease-out;
+    animation-timing-function: ease-out; }
 
 nav {
   height: 100%;
