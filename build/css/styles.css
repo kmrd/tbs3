@@ -193,7 +193,7 @@ section.intro {
     background-position: top center;
     z-index: 99; }
   section.intro h1 {
-    font-size: 4rem;
+    font-size: 2rem;
     color: #ffffff;
     font-weight: normal;
     width: 16em;
@@ -207,10 +207,11 @@ section.intro {
   section.intro a.introBtn {
     position: absolute;
     bottom: 1em;
-    left: 50%;
     color: #ffffff;
     text-decoration: none;
     z-index: 101;
+    width: 100%;
+    text-align: center;
     -webkit-animation-name: introBtnBounce;
     animation-name: introBtnBounce;
     -webkit-animation-duration: .4s;
@@ -534,12 +535,20 @@ nav {
           flex-direction: row;
           -ms-flex-pack: distribute;
           justify-content: space-around;
+          -ms-flex-wrap: wrap;
+          flex-wrap: wrap;
           -webkit-box-align: center;
           -ms-flex-align: center;
           align-items: center;
           list-style: none;
           margin-left: auto;
-          margin-right: auto; }
+          margin-right: auto;
+          padding-left: 0; }
+          .contents .pane .details .logos ul li {
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            margin-bottom: 2em; }
       .contents .pane .details .avatar {
         height: 15em;
         border-radius: 7.5em;
@@ -550,13 +559,10 @@ nav {
         display: flex;
         -ms-flex-pack: distribute;
         justify-content: space-around;
-        -webkit-box-align: start;
-        -ms-flex-align: start;
-        align-items: flex-start;
-        -webkit-box-orient: horizontal;
+        -webkit-box-orient: vertical;
         -webkit-box-direction: normal;
-        -ms-flex-direction: row;
-        flex-direction: row;
+        -ms-flex-direction: column;
+        flex-direction: column;
         width: 50em;
         max-width: 90vw;
         margin-left: auto;
@@ -585,7 +591,7 @@ nav {
           .contents .pane .details .personal > div ul {
             list-style: none;
             padding: 0;
-            margin: 0; }
+            margin: 0 0 3em 0; }
             .contents .pane .details .personal > div ul li {
               line-height: 1.8em; }
 
@@ -653,14 +659,15 @@ nav {
     padding-bottom: 3em;
     display: none; }
     #modals .section img {
-      max-width: 100%;
+      max-width: calc(90% - 4em);
       -webkit-box-shadow: 1px 5px 10px rgba(0, 0, 0, 0.1) inset;
       box-shadow: 1px 5px 10px rgba(0, 0, 0, 0.1) inset;
       padding: 2em; }
       #modals .section img.feature {
         -webkit-box-shadow: none;
         box-shadow: none;
-        padding: 0; }
+        padding: 0;
+        max-width: 100%; }
     #modals .section.show {
       display: block; }
     #modals .section h1 {
@@ -691,13 +698,15 @@ nav {
     #modals .section p {
       line-height: 1.8em;
       margin: 0 auto 2.4em auto;
-      width: 40em; }
+      width: 40em;
+      max-width: 80vw; }
       #modals .section p.text-center {
         text-align: center; }
     #modals .section ul {
-      width: 40em;
       margin: 0 auto 2.4em auto; }
       #modals .section ul li {
+        width: 40em;
+        max-width: calc(80vw - 2.4em);
         line-height: 1.8em; }
     #modals .section .columns {
       display: -webkit-box;
@@ -710,9 +719,14 @@ nav {
       -ms-flex-align: start;
       align-items: flex-start;
       -ms-flex-wrap: flex-wrap;
-      flex-wrap: flex-wrap; }
+      flex-wrap: flex-wrap;
+      -webkit-box-orient: vertical;
+      -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+      flex-direction: column; }
       #modals .section .columns .col {
-        padding: 0 4em; }
+        padding: 0 4em;
+        margin-bottom: 2em; }
         #modals .section .columns .col ul {
           width: auto; }
   #modals .close {
@@ -795,3 +809,19 @@ nav {
       line-height: 2.4em; }
     #design-sn ul.color-spec li:nth-of-type(4) {
       padding-bottom: 1.2em; }
+
+@media (min-width: 768px) {
+  section.intro h1 {
+    font-size: 4rem; }
+  #modals .section .columns {
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: row;
+    flex-direction: row; }
+  #modals .section ul li {
+    width: auto; }
+  .contents .pane .details .personal {
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: row;
+    flex-direction: row; } }

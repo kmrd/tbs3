@@ -191,7 +191,7 @@ section.intro {
 	}
 
 	h1 {
-		font-size: 4rem;
+		font-size: 2rem;
 		color: #ffffff;
 		font-weight: normal;
 		width: 16em;
@@ -209,10 +209,12 @@ section.intro {
 	a.introBtn {
 		position: absolute;
 		bottom: 1em;
-		left: 50%;
+		// left: 50%;
 		color: #ffffff;
 		text-decoration: none;
 		z-index: 101;
+		width: 100%;
+		text-align: center;
 
 		animation-name: introBtnBounce;
 		// animation-duration: .7s;
@@ -586,10 +588,19 @@ nav {
 					display: flex;
 					flex-direction: row;
 					justify-content: space-around;
+					flex-wrap: wrap;
 					align-items: center;
+
 					list-style: none;
 					margin-left: auto;
-					margin-right: auto
+					margin-right: auto;
+
+					padding-left: 0;
+
+					li {
+						display: flex;
+						margin-bottom: 2em;
+					}
 				}
 			}
 
@@ -603,8 +614,9 @@ nav {
 			.personal {
 				display: flex;
 				justify-content: space-around;
-				align-items: flex-start;
-				flex-direction: row;
+				// align-items: flex-start;
+				// align-items: center;
+				flex-direction: column;
 				width: 50em;
 				max-width: 90vw;
 
@@ -629,7 +641,7 @@ nav {
 					ul {
 						list-style: none;
 						padding: 0;
-						margin: 0;
+						margin: 0 0 3em 0;
 
 						li {
 							line-height: 1.8em;
@@ -724,13 +736,15 @@ nav {
 		padding-bottom: 3em;
 
 		img {
-			max-width: 100%;
+			// max-width: 100%;
+			max-width: calc(90% - 4em);
 			box-shadow: 1px 5px 10px rgba(0,0,0,0.1) inset;
 			padding: 2em;
 
 			&.feature {
 				box-shadow: none;
 				padding: 0;
+				max-width: 100%;
 			}
 		}
 
@@ -781,15 +795,17 @@ nav {
 			line-height: 1.8em;
 			margin: 0 auto 2.4em auto;
 			width: 40em;
+			max-width: 80vw;
 
 			&.text-center {
 				text-align: center;
 			}
 		}
 		ul {
-			width: 40em;
 			margin: 0 auto 2.4em auto;
 			li {
+				width: 40em;
+				max-width: calc(80vw - 2.4em);
 				line-height: 1.8em;
 			}
 		}
@@ -799,9 +815,11 @@ nav {
 		    justify-content: center;
 		    align-items: flex-start;
 		    flex-wrap: flex-wrap;
+		    flex-direction: column;
 
 		    .col {
 		    	padding: 0 4em;
+		    	margin-bottom: 2em;
 		    	// flex-basis: 1;
 
 				ul {
@@ -914,3 +932,32 @@ nav {
 	}
 }
 
+
+// Small devices (landscape phones, 576px and up)
+@media (min-width: 576px) { 
+}
+
+// Medium devices (tablets, 768px and up)
+@media (min-width: 768px) { 
+	section.intro h1 {
+		font-size: 4rem;
+	}
+
+	#modals .section .columns {
+		flex-direction: row;
+	}
+	#modals .section ul li {
+		width: auto;
+	}
+	.contents .pane .details .personal {
+		flex-direction: row;
+	}
+}
+
+// Large devices (desktops, 992px and up)
+@media (min-width: 992px) { 
+}
+
+// Extra large devices (large desktops, 1200px and up)
+@media (min-width: 1200px) { 
+}
