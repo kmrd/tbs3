@@ -248,8 +248,19 @@ function initModal() {
 			e.preventDefault();
 
 			var target = e.target.parentNode.dataset.contents;
+			console.log(e.target.parentNode.dataset.class);
+
+			if( e.target.parentNode.dataset.class == 'design' ) {
+				document.getElementById('modals').classList.add('design');
+				document.getElementById('modals').classList.remove('dev');
+			}
+			else if( e.target.parentNode.dataset.class == 'develop' ) {
+				document.getElementById('modals').classList.add('dev');
+				document.getElementById('modals').classList.remove('design');
+			}
 
 			document.getElementById('modals').classList.add('show');
+			document.getElementById('modals').scrollTo(0,0);
 
 			document.getElementById(target).classList.add('show');
 		});

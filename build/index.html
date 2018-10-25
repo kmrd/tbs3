@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
-  <title>David Reyes - UX Engineer</title>
+  <title>David Reyes - UX Design &amp; Development</title>
   <meta name="description" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -20,9 +20,9 @@
   <!-- Put modernizer in here since it may affect content as stuff loads;
        this is the rare exception to scripts at the bottom of the page -->
   <!-- <script src="js/vendor/modernizr-3.6.0.min.js"></script> -->
-  <script src="js/modernizr-all.min.js"></script>
+  <script src="js/vendor/modernizr-all.min.js"></script>
 
-  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/vendor/normalize.css">
   <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
@@ -32,7 +32,7 @@
 
 <header>
   <!-- TODO: Make this x an animated svg -->
-  <div class="nav-hamburger">=</div>
+  <div class="nav-hamburger">|||</div>
   <nav>
     <!-- TODO: Make this x an animated svg -->
     <!-- <div class="close">x</div> -->
@@ -57,17 +57,17 @@
 
 <nav>
   <a href="#design" class="section-link design" title="Design">
-    <span class="sr">Design</span>
+    <span>Design</span>
     <div class="shutters"></div>
   </a>
 
   <a href="#dev" class="section-link dev" title="Development">
-    <span class="sr">Development</span>
+    <span>Development</span>
     <div class="shutters"></div>
   </a>
 
   <a href="#about" class="section-link about" title="About">
-    <span class="sr">About</span>
+    <span>About</span>
     <div class="shutters"></div>
   </a>
 </nav>
@@ -171,7 +171,7 @@
         <ul class="work">
           <li>
             <a href="/dev/scrim" class="modal-btn" data-target="#workmodal" data-contents="dev-scrim" data-class="develop"
-              style="background-image: url('imgs/scrim.jpg'); background-size: contain; background-color: #e9f6ff;">
+              style="background-image: url('imgs/scrim-splash.jpg');">
               <div class="copy">
                 <h3>Scrim <small>Stealth startup in eSports</small></h3>
                 <ul>
@@ -202,7 +202,7 @@
           </li> -->
           <li>
             <a href="/dev/foodr" class="modal-btn" data-target="#workmodal" data-contents="dev-foodr" data-class="develop"
-              style="background-image: url('imgs/foodr.svg'); background-size: 60% 60%; background-color:#edaa0e;">
+              style="background-image: url('imgs/foodr.jpg');">
               <div class="copy">
                 <h3>Foodr <small>Food made by home cooks</small></h3>
                 <ul>
@@ -216,7 +216,7 @@
           </li>
           <li>
             <a href="/dev/joyride" class="modal-btn" data-target="#workmodal" data-contents="dev-joyride" data-class="develop"
-              style="background-image: url('/imgs/joyride.svg'); background-size: 50% 50%;">
+              style="background-image: url('/imgs/joyride-1.jpg');">
               <div class="copy">
                 <h3>Joyride <small>A smart WiFi bicycle lock</small></h3>
                 <ul>
@@ -293,7 +293,7 @@
 
   <div class="section" id="design-stopsign">
     <h1>
-        <span class="col-xs-4 col-sm-6 col-md-5">Stop Signs Survey App</span>
+        <span class="">Stop Signs Survey App</span>
         <small class="subtitle">UX Case Study</small>
       </h1>
       
@@ -301,59 +301,52 @@
 
       <img src="/imgs/stopsign-1.jpg">
 
-      <div class="col-md-10 col-xs-12">
+      <blockquote><em>tldr; UI improvements were able to cut a project’s time in half.</em></blockquote>
 
-        <blockquote><em>tldr; UI improvements were able to cut a project’s time in half.</em></blockquote>
+      <p>Initially, the interface placed fields in an arbitrary order according to the spreadsheet they will eventually populate. After observing users in the field, it became evident that the mental workflow did not match the field ordering. eg. the type of support is obvious from a far during an approach, yet this field was near to the end of the form.</p>
 
-        <p>Initially, the interface placed fields in an arbitrary order according to the spreadsheet they will eventually populate. After observing users in the field, it became evident that the mental workflow did not match the field ordering. eg. the type of support is obvious from a far during an approach, yet this field was near to the end of the form.</p>
+      <p class="text-center">
+        <img src="/imgs/stopsign-2.jpg"><br />
+        <em>Initial UI field ordering</em>
+      </p>
 
-        <p class="text-center">
-          <img src="/imgs/stopsign-2.jpg"><br />
-          <em>Initial UI field ordering</em>
-        </p>
+      <hr>
 
-        <hr>
+      <p>First improvements to change just the field ordering made the users more efficient and created fewer missed touches as they no longer had to scroll back and forth in the form.</p>
 
-        <p>First improvements to change just the field ordering made the users more efficient and created fewer missed touches as they no longer had to scroll back and forth in the form.</p>
+      <p>Throughput increased from a baseline of 26.4 signs / hour to 42.62 / hour. An increase of 61.4%.</p>
 
-        <p>Throughput increased from a baseline of 26.4 signs / hour to 42.62 / hour. An increase of 61.4%.</p>
+      <p class="text-center">
+        <img src="/imgs/sign-chart-1.svg">
+      </p>
 
-        <p class="text-center">
-          <img src="/imgs/sign-chart-1.svg">
-        </p>
+      <hr>
 
-        <hr>
+      <p>The next set of improvements focused on collecting information in a ganged format to reduce redundant input. Notably, there are often several signs on a single sign pole (two street signs, an octagon stop sign, rectangular “All-way” card, rectangular black & white obstacle cards) where each entry would contain duplicate information regarding support type, GPS coordinates, intersection, etc.</p>
 
-        <p>The next set of improvements focused on collecting information in a ganged format to reduce redundant input. Notably, there are often several signs on a single sign pole (two street signs, an octagon stop sign, rectangular “All-way” card, rectangular black & white obstacle cards) where each entry would contain duplicate information regarding support type, GPS coordinates, intersection, etc.</p>
+      <p>The fields were again re-ordered to more closely match the mental model of data collection by the users. As well, they were given instructions to record each support as a single entry, and combine the information for all signs into a single field, separated by a space.</p>
 
-        <p>The fields were again re-ordered to more closely match the mental model of data collection by the users. As well, they were given instructions to record each support as a single entry, and combine the information for all signs into a single field, separated by a space.</p>
+      <p>I then wrote a simple script that took the exported .CSV file, processed through the fields to separate out each sign, and generate a final .CSV file to be used as the final deliverable.</p>
 
-        <p>I then wrote a simple script that took the exported .CSV file, processed through the fields to separate out each sign, and generate a final .CSV file to be used as the final deliverable.</p>
+      <p>This method increased the throughput to a massive 85.5 signs / hour.</p>
 
-        <p>This method increased the throughput to a massive 85.5 signs / hour.</p>
+      <p class="text-center">
+        <img src="/imgs/sign-chart-2.svg">
+      </p>
+      
+      <p>The improvements culminated in the project time being cut in half. Due to the project being a fixed tender, this represented a massive cost savings.</p>
 
-        <p class="text-center">
-          <img src="/imgs/sign-chart-2.svg">
-        </p>
-        
-        <p>The improvements culminated in the project time being cut in half. Due to the project being a fixed tender, this represented a massive cost savings.</p>
+      <blockquote class="result">
+        <big>Final Result</big><br />
+        Project time cut in half
+      </blockquote>
 
-        <hr>
-
-        <blockquote class="result">
-          <small>Final Result</small><br />
-          Project time cut in half
-        </blockquote>
-
-        <hr>
-
-        <p>Curious how UX can be used to accelerate your project? Give me a shout: hello@thoughtbubble.ca</p>
-    </div>
+      <p>Curious how UX can be used to accelerate your project? Give me a shout: hello@thoughtbubble.ca</p>
   </div>
 
   <div class="section" id="design-sn">
     <h1>
-      <span class="col-xs-4 col-sm-6 col-md-5">Studio Nostalgia Rebrand</span>
+      <span class="">Studio Nostalgia Rebrand</span>
       <small class="subtitle">Brand Redesign</small>
     </h1>
     
@@ -361,7 +354,7 @@
 
     <img src="/imgs/sn-camera.jpg">
 
-    <div class="col-md-10 col-xs-12">
+    <div class="">
 
       <h2>Brief</h2>
       <p>Client wanted to a refresh of their identity and customer facing sites.</p>
@@ -372,19 +365,20 @@
 
       <h2>Logo</h2>
       <p>The were also to expand their business from strictly a graduation photography provider to a more media-based creative services. Using the node of retro elements present in their original identity, a set-top TV was selected as their new logo.</p>
-      <img src="/imgs/sn-logo.svg" class="img-fluid">
+      <img src="/imgs/sn-logo.svg">
 
       <hr>
 
       <h2>Typography</h2>
-      <img src="/imgs/sn-font.svg" class="img-fluid">
+      <img src="/imgs/sn-font.svg">
 
       <hr>
 
       <h2>Brand Colours</h2>
       <p>Taking cues from the bold palete of streetware fashion, a black and cherry red were selected to provide high a contrast look with a very vibrant accent.</p>
-      <div class="d-flex flex-row justify-content-around">
-        <div class="col-xs-6">
+      
+      <div class="columns">
+        <div class="col">
           <div class="color-circle black">#000000</div>
           <ul class="color-spec">
             <li>Black</li>
@@ -398,7 +392,7 @@
           </ul>
 
         </div>
-        <div class="col-xs-6">
+        <div class="col">
           <div class="color-circle red">#c40000</div>
           <ul class="color-spec">
             <li>Cherry</li>
@@ -416,7 +410,7 @@
       <hr>
 
       <h2>Website Treatment</h2>
-      <p>Taking cues from both modern and retro elements, a high-contrast treatment was selected.<p>
+      <p>Taking cues from both modern and retro elements, a high-contrast treatment was selected.</p>
       <p>Retro elements include lithographic treatment of hero image; bordered header panel; nods to art deco hairlines and shapes</p>
       <img src="/imgs/sn-screenshot.jpg" class="img-fluid">
 
@@ -487,13 +481,15 @@
     
     <hr class="head">
 
-    <img src="/imgs/scrim-splash.jpg">
+    <!-- <img src="/imgs/scrim-logo.jpg"> -->
+      <img src="/imgs/scrim-splash.jpg">
 
     <div class="col-md-10 col-xs-12">
 
       <p>A platform that allows professionals and other experts to make their service available to users looking for coaching, power levelling and other in-game services.</p>
 
       <hr>
+
 
       <div class="d-flex flex-direction-row justify-content-around">
         <div>
@@ -649,16 +645,19 @@
 
 </section>
 
+<div id="modal-bubble">
+  <img src="">
+</div>
 
 <!-- <script src="js/vendor/modernizr-3.6.0.min.js"></script> -->
 <!--   <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
   <script>window.jQuery || document.write('<script src="js/vendor/jquery-3.3.1.min.js"><\/script>')</script> -->
 <!--   <script src="js/plugins.js"></script> -->
 
-  <script src="js/main.js"></script>
+  <script src="js/all.js"></script>
   <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.0.2/TweenMax.min.js"></script> -->
-  <script src="js/TweenMax.min.js"></script>
-  <script src="js/ScrollToPlugin.js"></script>
+  <script src="js/vendor/TweenMax.min.js"></script>
+  <script src="js/vendor/ScrollToPlugin.js"></script>
   <!-- TODO: do we use the local or no? -->
   <!-- <script src="js/parallax.js"></script> -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/parallax/3.1.0/parallax.min.js"></script>

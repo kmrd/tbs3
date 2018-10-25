@@ -1,120 +1,97 @@
-const gulp = require('gulp');
-const rename = require('gulp-rename');
-// const less = require('gulp-less');
-const sass = require('gulp-sass');
-const del = require('del');
+// Include gulp
+var gulp      = require('gulp');
 
+// Include Our Plugins
+var jshint        = require('gulp-jshint');
+var sass          = require('gulp-sass');
+var concat        = require('gulp-concat');
+var uglify        = require('gulp-uglify');
+var rename        = require('gulp-rename');
+var autoprefixer  = require('gulp-autoprefixer');
+var file          = require('gulp-file');
+var log           = require('fancy-log');
 
-// const pug = require('gulp-pug');
-const minifyCSS = require('gulp-csso');
-// const imagemin = require('gulp-imagemin');
-// const concat = require('gulp-concat');
-// const sourcemaps = require('gulp-sourcemaps');
-
-// gulp.task('html', function(){
-//   return gulp.src('client/templates/*.pug')
-//     .pipe(pug())
-//     .pipe(gulp.dest('build/html'))
-// });
-
-
-// imagemin(['images/*.{jpg}'], 'images', {
-//     use: [
-//         imageminWebp({quality: 60})
-//     ]
-// }).then(() => {
-//     console.log('Images optimized');
-// });
-
-var env = 'development';
-
-
-gulp.task('build-scss', (done) => {
-  let stream = gulp
-    .src('src/css/*.scss')
-    .pipe( sass().on('error', sass.logError) );
-
-  // This doesn't work as expected. Need to troubleshoot
-  if ( env == 'production') {
-    stream.pipe(minifyCSS());
-  }
-
-  return stream.pipe(gulp.dest('build/css'));
+gulp.task('lint', function() {
+  return gulp.src('src/js/*.js')
+    .pipe(jshint())
+    .pipe(jshint.reporter('default'));
 });
 
-gulp.task('build-css', function(){
-  return gulp.src('src/css/*.css')
-    // .pipe( sass().on('error', sass.logError) )
-    // .pipe(minifyCSS())
-    .pipe(gulp.dest('build/css'))
-});
+gulp.task('sass', gulp.series(
+  function cssVendor() {
+    return gulp.src('src/css/vendor/*.css')
+      .pipe(gulp.dest('build/css/vendor'));
+    },
+  function scssParse() {
+    return gulp.src('src/css/*.scss')
+      .pipe(sass())
+      .pipe(autoprefixer({
+        browsers: ['last 2 versions'],
+        cascade: false
+      }))
+      .pipe(gulp.dest('build/css'));
+    }
+  )
+);
 
-gulp.task('build-js', function(){
-  return gulp.src('src/js/*')
-    // .pipe(less())
-    // .pipe(minifyCSS())
-    .pipe(gulp.dest('build/js'))
-});
+gulp.task('scripts', gulp.series(
+  function JSVendor() {
+    return gulp.src('src/js/vendor/*.js')
+      .pipe(gulp.dest('build/js/vendor'));
+  },
+  function JSParse() {
+    return gulp.src('src/js/*.js')
+      .pipe(concat('all.js'))
+      .pipe(gulp.dest('build/js'))
+      // .pipe(rename('all.min.js'))
+      // .pipe(uglify())
+      // .pipe(gulp.dest('build/js'));
+    }
+  )
+);
 
-gulp.task('build-imgs', function(){
-  del(['build/imgs/*']);
-  // gulp.series('copy_imgs');
-  return gulp.src('src/imgs/*')
-    // .pipe(imagemin( {
-    // }))
-    // .pipe(less())
-    // .pipe(minifyCSS())
-    .pipe(gulp.dest('build/imgs'))
-});
-
-gulp.task('copy_imgs', function(){
-  return gulp.src('src/imgs/*.{png,svg}')
-    // .pipe(less())
-    // .pipe(minifyCSS())
-    .pipe(gulp.dest('build/imgs'))
-});
-
-
-gulp.task('build-html', function(){
-   gulp.src('src/*.ico')
-    .pipe(gulp.dest('build'))
+gulp.task('html', function(done) {
   return gulp.src('src/*.html')
-    // .pipe(less())
-    // .pipe(minifyCSS())
-    .pipe(gulp.dest('build'))
+    .pipe(gulp.dest('build'));
 });
 
 
+gulp.task('rootassets', function() {
+  return gulp.src(['src/*','!src/*.html','!src/touch'])
+    .pipe(gulp.dest('build'));
+});
+
+gulp.task('imgs', function() {
+  return gulp.src('src/imgs/*')
+    .pipe(gulp.dest('build/imgs'));
+});
+
+gulp.task('touch', function touch() {
+  return file('touch', String(new Date().getTime()), { src: true })
+    .pipe( gulp.dest('build'));
+});
+
+
+
+
+// Watch Files For Changes
 gulp.task('watch', function() {
-  // env = 'development';
-  gulp.watch('src/css/*',  gulp.series('build-scss') );
-  gulp.watch('src/css/*',  gulp.series('build-css') );
-  gulp.watch('src/js/*',   gulp.series('build-js') );
-  gulp.watch('src/imgs/*', gulp.series('build-imgs') );
-  gulp.watch('src/*',      gulp.series('build-html') );
-});
-
-
-// Not working -- async issues have to be addressed:
-// this is probably not the way this should be done
-gulp.task('build', function(done) {
-  env = 'production';
-  gulp.series('build-scss');
-  gulp.series('build-css');
-  gulp.series('build-js');
-  gulp.series('build-imgs');
-  gulp.series('build-html');
-  return done();
+  gulp.watch('src/js/*.js', gulp.series(/*'lint',*/ 'scripts', 'touch'));
+  gulp.watch('src/css/*.scss', gulp.series('sass','touch'));
+  gulp.watch('src/imgs/*', gulp.series('imgs','touch'));
+  gulp.watch(['src/*','!src/*.html'], gulp.series('rootassets', 'touch'));
+  gulp.watch(['src/*.html','src/_templates/*'], gulp.series('html','touch'));
 });
 
 // Default Task
 gulp.task('default',
-    gulp.series(
-        'build-scss',
-        'build-css',
-        'build-js',
-        'build-imgs',
-        'build-html',
-        'watch'
-        )
-    );
+  gulp.series(
+    // 'lint',
+    'sass',
+    'scripts',
+    'imgs',
+    'rootassets',
+    'html',
+    'touch',
+    'watch')
+  );
