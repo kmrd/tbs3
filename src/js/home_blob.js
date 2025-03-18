@@ -21,7 +21,11 @@ export class Blob {
   
     this.nosieFn = createNoise2D();
 
-    this.bubbleEl = bubbleEl;
+    if (typeof bubbleEl === 'string') {
+      this.bubbleEl = document.querySelector(bubbleEl);
+    } else {
+      this.bubbleEl = bubbleEl;
+    }
 
     this.createPoints();
   }

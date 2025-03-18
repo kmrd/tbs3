@@ -1,95 +1,17 @@
 const Parallax = require('parallax-js');
 const { gsap } = require('gsap');
-const { Blob } = require('./blob');
+const { Home } = require('./home');
 
 class Page {
-	// Elements
-	introBtn = document.querySelector('.introBtn');
-	introSection = document.querySelector('.intro');
-	introBubble = document.querySelector(".intro path");
-
 	// Track states
-	isHome = true;
+	isHome;
 
 	constructor() {}
 
 	init() {
-		this.initHome();
-	}
-
-	initHome() {
-		this.initParallax();
-
-		this.showHeroText();
-		this.initBlob();
-		this.showBlob();
-		this.initScrollButtonBounce();
-
-		this.introBtn.addEventListener('click', (e) => {
-			e.preventDefault();
-			this.showSliders();
-		});
-	}
-
-	showHeroText() {
-		const heroTextLine = ".intro .line";
-		// Unblur using the CSS var
-		gsap.from(heroTextLine, {
-			"--header-blur": "15px",
-			duration: 1.75,
-			stagger: {
-				each: 0.5,
-			},
-		});
-	}
-
-	initParallax() {
-		parallaxInstance = new Parallax(
-			this.introSection,
-			{
-				relativeInput: true,
-				hoverOnly: true,
-				selector: '.bg, h1',
-				pointerEvents: true,
-			}
-		);
-	}
-
-	initBlob() {
-		const introBlob = new Blob(this.introBubble, /* points= */ 7);
-		introBlob.startAnimation();
-	}
-
-	showBlob() {
-		gsap.from('.scrollMore', {
-			delay: 1,
-			duration: 2,
-			bottom: '-10vh',
-		})
-	}
-
-	initScrollButtonBounce() {
-		const maxScale = 1.2;
-		const minScale = 1.0;
-
-		const scrollButtonBounceTimeline = gsap.timeline({
-			repeat: -1,
-			repeatDelay: 1,
-		});
-		scrollButtonBounceTimeline.to(this.introBtn, {
-			scale: minScale,
-			duration: 0,
-		});
-		scrollButtonBounceTimeline.to(this.introBtn, {
-			scale: maxScale,
-			duration: .5,
-			ease: "power1.out",
-		});
-		scrollButtonBounceTimeline.to(this.introBtn, {
-			scale: minScale,
-			duration: 1.75,
-			ease: "bounce.out",
-		});
+		this.isHome = true;
+		const home = new Home();
+		home.init();
 	}
 
 	// window.addEventListener('scroll', (e) => {
