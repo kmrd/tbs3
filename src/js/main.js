@@ -8,14 +8,10 @@ class Page {
 	introSection = document.querySelector('.intro');
 	introBubble = document.querySelector(".intro path");
 
-	heroTimeline;
-
 	// Track states
 	isHome = true;
 
-	constructor() {
-		this.heroTimeline = gsap.timeline();
-	}
+	constructor() {}
 
 	init() {
 		this.initHome();
@@ -38,7 +34,7 @@ class Page {
 	showHeroText() {
 		const heroTextLine = ".intro .line";
 		// Unblur using the CSS var
-		this.heroTimeline.from(heroTextLine, {
+		gsap.from(heroTextLine, {
 			"--header-blur": "15px",
 			duration: 1.75,
 			stagger: {
@@ -65,11 +61,10 @@ class Page {
 	}
 
 	showBlob() {
-		const introElements = '.introBtn, .intro svg';
-		this.heroTimeline.from(introElements, {
+		gsap.from('.scrollMore', {
+			delay: 1,
 			duration: 2,
 			bottom: '-10vh',
-			position: -2,
 		})
 	}
 

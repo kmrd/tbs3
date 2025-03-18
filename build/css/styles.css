@@ -413,17 +413,27 @@ section.intro h1 a {
   position: relative;
 }
 
-section.intro a.introBtn {
+section.intro .scrollMore {
+  align-items: center;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  height: 4rem;
   position: absolute;
-  bottom: 1em;
+  width: 100%;
+  z-index: 102;
+}
+
+section.intro a.introBtn {
+  bottom: 1.25rem;
   color: #000000;
+  position: absolute;
   text-decoration: none;
   -webkit-text-stroke: 0.5px rgba(255, 255, 255, 0.4);
   text-stroke: 0.5px rgba(255, 255, 255, 0.4);
   text-shadow: 1px 3px 15px rgba(0, 0, 0, 0.9);
-  z-index: 102;
-  width: 100%;
   text-align: center;
+  z-index: 104;
 }
 
 section.intro .bubble {
@@ -432,7 +442,7 @@ section.intro .bubble {
   left: 0;
   height: 11rem;
   width: 100%;
-  z-index: 101;
+  z-index: 103;
 }
 
 section.intro .bubble path {
