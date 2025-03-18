@@ -22,7 +22,7 @@ class Page {
 		this.shutters = new Shutters();
 
 		this.initHomeSection();
-		this.navigateToShutters(); // debugging only
+		// this.navigateToShutters(); // debugging only
 		// this.initShutters();
 	}
 
@@ -63,7 +63,6 @@ class Page {
 
 	navigateToShutters() {
 		this.isHome = false;
-		console.log('show shutters');
 		this.home.hide(this.transitionTimeline);
 		this.shutters.show(this.transitionTimeline);
 	}
@@ -104,8 +103,6 @@ let currentSection;
 // 		gsap.to(window, 0.5, { scrollTo: { y: '100' } });
 // 	});
 
-// initCloud
-
 // window.addEventListener('scroll', (e) => {
 // 	if (!isShowingContents) {
 
@@ -127,14 +124,6 @@ let currentSection;
 // });
 
 
-
-// function initNav() {
-// 	isShowingContents = false;
-// 	let intro = document.querySelector('.intro');
-// 	navLinks = document.querySelectorAll('nav>a');
-// 	navShutters = document.querySelectorAll('.shutters');
-// 	sections = document.querySelectorAll('section>.pane');
-// 	introTimeLine = gsap.timeline();
 
 // 	// Hide the intro and retract  the navShutters
 // 	introTimeLine.to(intro, 0.8, { ease: "expo.easeInOut", y: '-100vh' });

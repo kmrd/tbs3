@@ -9,8 +9,10 @@ export class Shutters {
   shutters = document.querySelectorAll('.shutters');
   nav = document.querySelector('nav.shutterContainer');
 
+  highlightedShutter;
+
   shutterRevealDuration = 0.5;
-  shutterWidthFat = 1.4;
+  shutterWidthFat = 1.5;
   shutterWidthMin = 1;
 
   // isShowingContents = false;
@@ -30,6 +32,11 @@ export class Shutters {
   initShutterEvents() {
     this.navLinks.forEach((el, key) => {
       el.addEventListener('mouseenter', (e) => {
+        // Save the currently moused over shutter to use to set initial state.
+        this.highlightedShutter = e.target;
+        if (!this.enableActions || this.activeShutter !== null) {
+          return;
+        }
         this.expandShutter(el);
         this.shrinkShutters(this.navLinks, [el]);
       });
@@ -42,9 +49,6 @@ export class Shutters {
   }
 
   expandShutter(shutter) {
-    if (!this.enableActions || this.activeShutter !== null) {
-      return;
-    }
     gsap.killTweensOf(this.navLinks);
     gsap.to(shutter, {
       duration: this.shutterRevealDuration,
@@ -54,9 +58,6 @@ export class Shutters {
   }
 
   shrinkShutters(shutters, excludedShutters = []) {
-    if (!this.enableActions || this.activeShutter !== null) {
-      return;
-    }
     shutters.forEach((el, index) => {
       if (!excludedShutters.includes(el))
       gsap.to(el, { flex: this.shutterWidthMin });
@@ -74,6 +75,9 @@ export class Shutters {
         stagger: 0.08,
         onComplete: () => {
           this.enableActions = true;
+          if (this.highlightedShutter) {
+            this.expandShutter(this.highlightedShutter);
+          }
         },
       }));
   }
