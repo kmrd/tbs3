@@ -27,6 +27,7 @@ class Page {
 		this.showHeroText();
 		this.initBlob();
 		this.showBlob();
+		this.initScrollButtonBounce();
 
 		this.introBtn.addEventListener('click', (e) => {
 			e.preventDefault();
@@ -59,16 +60,41 @@ class Page {
 	}
 
 	initBlob() {
-		const introBlob = new Blob(this.introBubble, /* points= */ 20);
+		const introBlob = new Blob(this.introBubble, /* points= */ 7);
 		introBlob.startAnimation();
 	}
 
 	showBlob() {
 		const introElements = '.introBtn, .intro svg';
-		this.heroTimeline.from('.introBtn, .intro svg', {
-			duration: 3,
+		this.heroTimeline.from(introElements, {
+			duration: 2,
 			bottom: '-10vh',
+			position: -2,
 		})
+	}
+
+	initScrollButtonBounce() {
+		const maxScale = 1.2;
+		const minScale = 1.0;
+
+		const scrollButtonBounceTimeline = gsap.timeline({
+			repeat: -1,
+			repeatDelay: 1,
+		});
+		scrollButtonBounceTimeline.to(this.introBtn, {
+			scale: minScale,
+			duration: 0,
+		});
+		scrollButtonBounceTimeline.to(this.introBtn, {
+			scale: maxScale,
+			duration: .5,
+			ease: "power1.out",
+		});
+		scrollButtonBounceTimeline.to(this.introBtn, {
+			scale: minScale,
+			duration: 1.75,
+			ease: "bounce.out",
+		});
 	}
 
 	// window.addEventListener('scroll', (e) => {

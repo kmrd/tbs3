@@ -6,7 +6,8 @@ export class Blob {
   points = [];
   numPoints;
   radius;
-  noiseDeltaT = 0.003; // how fast we progress through "time"
+  wiggleDelta = 10;
+  noiseDeltaT = 0.006; // how fast we progress through "time"
   noiseFn;
 
   bubbleEl;
@@ -17,6 +18,7 @@ export class Blob {
     this.numPoints = points;
     this.angleStep = (Math.PI * 2) / this.numPoints;
     this.radius = radius;
+  
     this.nosieFn = createNoise2D();
 
     this.bubbleEl = bubbleEl;
@@ -59,8 +61,6 @@ export class Blob {
   }
 
   nextFrame() {
-    const wiggleDelta = 10;
-
     for (let i = 0; i < this.getPoints().length; i++) {
       this.bubbleEl.setAttribute("d", spline(this.getPoints(), 1, true));
 
@@ -70,8 +70,8 @@ export class Blob {
       const nX = this.nosieFn(point.noiseOffsetX, point.noiseOffsetX);
       const nY = this.nosieFn(point.noiseOffsetY, point.noiseOffsetY);
       // map this noise value to a new value, somewhere between it's original location -20 and it's original location + 20
-      const x = this.remapRange(nX, -1, 1, point.originX - wiggleDelta, point.originX + wiggleDelta);
-      const y = this.remapRange(nY, -1, 1, point.originY - wiggleDelta, point.originY + wiggleDelta);
+      const x = this.remapRange(nX, -1, 1, point.originX - this.wiggleDelta, point.originX + this.wiggleDelta);
+      const y = this.remapRange(nY, -1, 1, point.originY - this.wiggleDelta, point.originY + this.wiggleDelta);
 
       // update the point's current coordinates
       point.x = x;
