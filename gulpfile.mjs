@@ -11,6 +11,9 @@ import file from 'gulp-file';
 import log from 'fancy-log';
 import * as dartSass from 'sass';
 import gulpSass from 'gulp-sass';
+import webpackstream from 'webpack-stream';
+import webpack from 'webpack';
+
 const sass = gulpSass(dartSass);
 
 gulp.task('lint', function () {
@@ -42,8 +45,16 @@ gulp.task('scripts', gulp.series(
   },
   function JSParse() {
     return gulp.src('src/js/*.js')
-      .pipe(concat('all.js'))
-      .pipe(uglify({ /* options */ }))
+      .pipe(webpackstream({
+        mode: 'development',
+        output: {
+          filename: 'all.js',
+        }
+      },
+        webpack,
+      ))
+      // .pipe(concat('all.js'))
+      // .pipe(uglify({ /* options */ }))
       .pipe(gulp.dest('build/js'))
   }
 )

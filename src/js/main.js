@@ -1,3 +1,91 @@
+const Parallax = require('parallax-js');
+const spline = require('@georgedoescode/spline');
+const { gsap } = require('gsap');
+
+class Page {
+	// Elements
+	introBtn = document.querySelector('.introBtn');
+	introSection = document.querySelector('.intro');
+
+	// Track states
+	isHome = true;
+
+	constructor() { }
+
+	init() {
+		this.initHome();
+	}
+
+	initHome() {
+		this.initParallax();
+		this.showHeroText();
+
+		this.introBtn.addEventListener('click', (e) => {
+			e.preventDefault();
+			this.showSliders();
+		});
+	}
+
+	showHeroText() {
+		const heroTextLine = ".intro .line";
+		// Unblur using the CSS var
+		gsap.from(heroTextLine, {
+			"--header-blur": "15px",
+			duration: 1.75,
+			stagger: {
+				each: 0.5,
+			},
+		});
+	}
+
+	initParallax() {
+		parallaxInstance = new Parallax(
+			this.introSection,
+			{
+				relativeInput: true,
+				hoverOnly: true,
+				selector: '.bg, h1',
+				pointerEvents: true,
+			}
+		);
+	}
+	// window.addEventListener('scroll', (e) => {
+	// 	if (!isHome) {
+	// 		if (last_known_scroll_position < window.scrollY) {
+	// 			// history.pushState({ section: '#main' }, "Main", "#main");
+	// 			parallaxInstance.disable();
+
+	// 			introTimeLine.play();
+	// 			// document.querySelector('body').classList.add('main');
+	// 		} else {
+	// 			// history.pushState({ section: '#home'}, "Home", "/");
+	// 			parallaxInstance.enable();
+	// 			introTimeLine.reverse();
+	// 			// document.querySelector('body').classList.remove('main');
+	// 		}
+
+	// 		last_known_scroll_position = window.scrollY;
+	// 	}
+	// });
+
+	showSliders() {
+		const maxHeight = Math.max(
+			document.body.scrollHeight,
+			document.body.offsetHeight,
+			document.documentElement.clientHeight,
+			document.documentElement.scrollHeight,
+			document.documentElement.offsetHeight,
+		);
+		if (window.scrollY == maxHeight) {
+			window.scrollTo(0, 0);
+		}
+		gsap.to(window, {
+			duration: 0.5,
+			scrollTo: { y: '100' },
+		});
+	}
+}
+
 let isShowingContents; // if the nav sections are showing their content
 let last_known_scroll_position;
 
@@ -13,46 +101,48 @@ let sections; // all the content sections
 let currentSection;
 
 
-function initIntro() {
-	const intro = document.querySelector('.intro');
-	const introBtn = document.querySelector('.introBtn');
+// function initIntro() {
+// 	const intro = document.querySelector('.intro');
+// 	const introBtn = document.querySelector('.introBtn');
 
-	introBtn.addEventListener('click', (e) => {
-		e.preventDefault();
-		e.stopPropagation();
+// 	introBtn.addEventListener('click', (e) => {
+// 		e.preventDefault();
+// 		e.stopPropagation();
 
-		// Scroll the window. This triggers the intro 
-		// animation as if the user had scrolled themselves
-		const maxHeight = Math.max(
-			document.body.scrollHeight, document.body.offsetHeight,
-			document.documentElement.clientHeight, document.documentElement.scrollHeight,
-			document.documentElement.offsetHeight);
-		if (window.scrollY == maxHeight) {
-			window.scrollTo(0, 0);
-		}
-		TweenLite.to(window, 0.5, { scrollTo: { y: '100' } });
-	});
+// 		// Scroll the window. This triggers the intro 
+// 		// animation as if the user had scrolled themselves
+// 		const maxHeight = Math.max(
+// 			document.body.scrollHeight, document.body.offsetHeight,
+// 			document.documentElement.clientHeight, document.documentElement.scrollHeight,
+// 			document.documentElement.offsetHeight);
+// 		if (window.scrollY == maxHeight) {
+// 			window.scrollTo(0, 0);
+// 		}
+// 		gsap.to(window, 0.5, { scrollTo: { y: '100' } });
+// 	});
 
-	window.addEventListener('scroll', (e) => {
-		if (!isShowingContents) {
+// initCloud
 
-			if (last_known_scroll_position < window.scrollY) {
-				// history.pushState({ section: '#main' }, "Main", "#main");
-				parallaxInstance.disable();
+// window.addEventListener('scroll', (e) => {
+// 	if (!isShowingContents) {
 
-				introTimeLine.play();
-				// document.querySelector('body').classList.add('main');
-			} else {
-				// history.pushState({ section: '#home'}, "Home", "/");
-				parallaxInstance.enable();
-				introTimeLine.reverse();
-				// document.querySelector('body').classList.remove('main');
-			}
+// 		if (last_known_scroll_position < window.scrollY) {
+// 			// history.pushState({ section: '#main' }, "Main", "#main");
+// 			parallaxInstance.disable();
 
-			last_known_scroll_position = window.scrollY;
-		}
-	});
-}
+// 			introTimeLine.play();
+// 			// document.querySelector('body').classList.add('main');
+// 		} else {
+// 			// history.pushState({ section: '#home'}, "Home", "/");
+// 			parallaxInstance.enable();
+// 			introTimeLine.reverse();
+// 			// document.querySelector('body').classList.remove('main');
+// 		}
+
+// 		last_known_scroll_position = window.scrollY;
+// 	}
+// });
+
 
 
 function initNav() {
@@ -61,21 +151,21 @@ function initNav() {
 	navLinks = document.querySelectorAll('nav>a');
 	navShutters = document.querySelectorAll('.shutters');
 	sections = document.querySelectorAll('section>.pane');
-	introTimeLine = new TimelineLite();
+	introTimeLine = gsap.timeline();
 
 	// Hide the intro and retract  the navShutters
-	introTimeLine.add(TweenMax.to(intro, 0.8, { ease: Expo.easeInOut, y: '-100vh' }));
-	introTimeLine.add(TweenMax.staggerTo(navShutters, 0.5, { ease: Expo.easeInOut, left: '100%' }, 0.08));
+	// introTimeLine.to(intro, 0.8, { ease: "expo.easeInOut", y: '-100vh' });
+	// introTimeLine.add(gsap.staggerTo(navShutters, 0.5, { ease: "expo.easeInOut", left: '100%' }, 0.08));
 	introTimeLine.stop();
 
 	for (let i = 0; i < navLinks.length; i++) {
 		navLinks[i].addEventListener('mouseover', (e) => {
 			if (!isShowingContents) {
-				TweenMax.to(navLinks, 0.5, {
+				gsap.to(navLinks, 0.5, {
 					flex: '1'
 				});
-				TweenMax.killTweensOf(e.target, { flex: true });
-				TweenMax.to(e.target, 0.5, {
+				gsap.killTweensOf(e.target, { flex: true });
+				gsap.to(e.target, 0.5, {
 					flex: '1.3'
 				});
 			}
@@ -88,12 +178,12 @@ function initNav() {
 
 			setState(e);
 
-			sectionTimeLine = new TimelineLite();
+			sectionTimeLine = gsap.timeline();
 
 			// If we're inside of a section, backout of it
 			if (isShowingContents && currentSection) {
 				// console.log('backingout');
-				sectionTimeLine.add(TweenMax.to(window, 0.3, {
+				sectionTimeLine.add(gsap.to(window, 0.3, {
 					scrollTo: 0,
 					onComplete: setStateNav
 				}));
@@ -101,13 +191,13 @@ function initNav() {
 
 			sectionTimeLine.add("startTransition");
 
-			sectionTimeLine.add(TweenMax.to(navLinks, 0.8, {
-				ease: Expo.easeInOut,
+			sectionTimeLine.add(gsap.to(navLinks, 0.8, {
+				ease: "expo.easeInOut",
 				flex: '1'
 			}), "startTransition");
-			TweenMax.killTweensOf(e.target, { flex: true });
-			sectionTimeLine.add(TweenMax.to(e.target, 0.8, {
-				ease: Expo.easeInOut,
+			gsap.killTweensOf(e.target, { flex: true });
+			sectionTimeLine.add(gsap.to(e.target, 0.8, {
+				ease: "expo.easeInOut",
 				flex: '30',
 				onStart: setTransitionStateToContents,
 				onStartParams: [e.target],
@@ -217,21 +307,21 @@ function initState() {
 				console.log('design only');
 				introTimeLine.play();
 				document.querySelector('#design').click();
-				// TweenLite.to(window, 0.1, {scrollTo:{y:'150'}});
+				// gsap.to(window, 0.1, {scrollTo:{y:'150'}});
 				break;
 			case "#dev":
 				console.log('dev only');
 				introTimeLine.play();
-				// TweenLite.to(window, 0.1, {scrollTo:{y:'100'}});
+				// gsap.to(window, 0.1, {scrollTo:{y:'100'}});
 				break;
 			case "#about":
 				introTimeLine.play();
-				// TweenLite.to(window, 0.1, {scrollTo:{y:'100'}});
+				// gsap.to(window, 0.1, {scrollTo:{y:'100'}});
 				console.log('about only');
 				break;
 			case '#main':
 				introTimeLine.play();
-				// TweenLite.to(window, 0.1, {scrollTo:{y:'100'}});
+				// gsap.to(window, 0.1, {scrollTo:{y:'100'}});
 				break;
 			case '#home':
 			default:
@@ -260,14 +350,14 @@ function updateContentParallax() {
 	let scrolled = window.pageYOffset / window.innerHeight * 100;
 
 	let h1 = document.querySelectorAll('.contents .pane h1');
-	TweenMax.to(h1, 0.8, {
-		ease: Expo.easeOut,
+	gsap.to(h1, 0.8, {
+		ease: "expo.easeOut",
 		bottom: 15 + (scrolled * 0.5) + 'vh'
 	});
 
 	let feature = document.querySelectorAll('.contents .pane .feature')
-	TweenMax.to(feature, 0.8, {
-		ease: Expo.easeOut,
+	gsap.to(feature, 0.8, {
+		ease: "expo.easeOut",
 		backgroundPosition: '50% ' + (50 + (scrolled * 0.1)) + '%'
 	});
 }
@@ -331,8 +421,8 @@ function initModal() {
 			bubble.style.height = coords.height + 'px';
 			// console.log(window.scrollY);
 
-			TweenMax.to(bubble, .75, {
-				ease: Expo.easeInOut,
+			gsap.to(bubble, .75, {
+				ease: "expo.easeInOut",
 				top: targetCoords.top + scrolled + 'px',
 				left: targetCoords.x,
 				width: targetCoords.width,
@@ -370,12 +460,16 @@ function initModal() {
 	});
 }
 
-
+document.addEventListener('DOMContentLoaded', () => {
+	const page = new Page();
+	page.init();
+});
 window.addEventListener('DOMContentLoaded', function () {
-	initParallax();
-	initIntro();
-	initNav();
-	initContentParallax();
+	// new Page();
+	// initParallax();
+	// initIntro();
+	// initNav();
+	// initContentParallax();
 
-	initModal();
+	// initModal();
 });

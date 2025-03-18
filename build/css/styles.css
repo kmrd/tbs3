@@ -5,6 +5,10 @@
 /* ===================================
 /* /DEV 
 /* ===================================*/
+html {
+  --header-blur: 0;
+}
+
 body {
   overscroll-behavior: none;
   font-family: "Open Sans", sans-serif;
@@ -167,15 +171,19 @@ section.intro h1 {
   text-shadow: 1px 5px 10px rgba(0, 0, 0, 0.5);
   z-index: 101;
 }
+section.intro h1 span {
+  filter: blur(var(--header-blur));
+}
 section.intro h1 a {
   color: orange;
   text-decoration: none;
   pointer-events: none;
+  position: relative;
 }
 section.intro a.introBtn {
   position: absolute;
   bottom: 1em;
-  color: #ffffff;
+  color: orange;
   text-decoration: none;
   z-index: 101;
   width: 100%;
