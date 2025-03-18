@@ -16,7 +16,7 @@ npm i
 
 4. Run gulp to process
 ```
-npm gulp
+gulp
 ```
 
 5. View built files under `/build` directory.
