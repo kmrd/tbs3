@@ -430,7 +430,7 @@ section.intro a.introBtn {
   bottom: 1em;
   color: orange;
   text-decoration: none;
-  z-index: 101;
+  z-index: 102;
   width: 100%;
   text-align: center;
   animation-name: introBtnBounce;
@@ -438,6 +438,19 @@ section.intro a.introBtn {
   animation-direction: alternate;
   animation-iteration-count: infinite;
   animation-timing-function: ease-out;
+}
+
+section.intro .bubble {
+  position: absolute;
+  bottom: -2.5rem;
+  left: 0;
+  height: 9rem;
+  width: 100%;
+  z-index: 101;
+}
+
+section.intro .bubble path {
+  filter: blur(3px);
 }
 
 nav {

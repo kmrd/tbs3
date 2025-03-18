@@ -1,16 +1,21 @@
 const Parallax = require('parallax-js');
-const spline = require('@georgedoescode/spline');
 const { gsap } = require('gsap');
+const { Blob } = require('./blob');
 
 class Page {
 	// Elements
 	introBtn = document.querySelector('.introBtn');
 	introSection = document.querySelector('.intro');
+	introBubble = document.querySelector(".intro path");
+
+	heroTimeline;
 
 	// Track states
 	isHome = true;
 
-	constructor() { }
+	constructor() {
+		this.heroTimeline = gsap.timeline();
+	}
 
 	init() {
 		this.initHome();
@@ -18,7 +23,10 @@ class Page {
 
 	initHome() {
 		this.initParallax();
+
 		this.showHeroText();
+		this.initBlob();
+		this.showBlob();
 
 		this.introBtn.addEventListener('click', (e) => {
 			e.preventDefault();
@@ -29,7 +37,7 @@ class Page {
 	showHeroText() {
 		const heroTextLine = ".intro .line";
 		// Unblur using the CSS var
-		gsap.from(heroTextLine, {
+		this.heroTimeline.from(heroTextLine, {
 			"--header-blur": "15px",
 			duration: 1.75,
 			stagger: {
@@ -49,6 +57,20 @@ class Page {
 			}
 		);
 	}
+
+	initBlob() {
+		const introBlob = new Blob(this.introBubble, /* points= */ 20);
+		introBlob.startAnimation();
+	}
+
+	showBlob() {
+		const introElements = '.introBtn, .intro svg';
+		this.heroTimeline.from('.introBtn, .intro svg', {
+			duration: 3,
+			bottom: '-10vh',
+		})
+	}
+
 	// window.addEventListener('scroll', (e) => {
 	// 	if (!isHome) {
 	// 		if (last_known_scroll_position < window.scrollY) {
