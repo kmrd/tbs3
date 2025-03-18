@@ -184,7 +184,7 @@ section.intro {
 		margin-left: -5vw;
 		width: 110vw;
 		height: 110vh;
-		background-image: url('/imgs/hero.jpg');
+		background-image: url('../imgs/hero.jpg');
 		background-size: cover;
 		background-position: top center;
 		z-index: 99;
@@ -262,15 +262,15 @@ nav {
 		pointer-events: auto;
 
 		&.design {
-			background-image: url('/imgs/BL9NruAgfOY.jpg');
+			background-image: url('../imgs/BL9NruAgfOY.jpg');
 		}
 
 		&.dev {
-			background-image: url('/imgs/tumblr_nhdfwyMrPL1sxm4gzo10_1280.jpg');
+			background-image: url('../imgs/tumblr_nhdfwyMrPL1sxm4gzo10_1280.jpg');
 		}
 
 		&.about {
-			background-image: url('/imgs/tumblr_nc6e88JZP11rnmn4zo1_1280.jpg');
+			background-image: url('../imgs/tumblr_nc6e88JZP11rnmn4zo1_1280.jpg');
 		}
 
 		span {
@@ -378,19 +378,19 @@ nav {
 		}
 
 		&#design .feature {
-			background-image: url('/imgs/BL9NruAgfOY.jpg'); }
+			background-image: url('../imgs/BL9NruAgfOY.jpg'); }
 		&#dev .feature {
-			background-image: url('/imgs/tumblr_nhdfwyMrPL1sxm4gzo10_1280.jpg'); }
+			background-image: url('../imgs/tumblr_nhdfwyMrPL1sxm4gzo10_1280.jpg'); }
 		&#about .feature {
-			background-image: url('/imgs/tumblr_nc6e88JZP11rnmn4zo1_1280.jpg'); }
+			background-image: url('../imgs/tumblr_nc6e88JZP11rnmn4zo1_1280.jpg'); }
 
 		&#design .details {
 			background-color: #ffffff;
-			background-image: url('/imgs/bg.svg'); }
+			background-image: url('../imgs/bg.svg'); }
 		&#dev .details {
 			color: #ffffff;
 			background-color: #3a3a3a;
-			background-image: url('/imgs/bg-dark.svg');
+			background-image: url('../imgs/bg-dark.svg');
 			.work h3, .work ul {
 				background-color: #555555;
 				color: #ffffff;
@@ -401,7 +401,7 @@ nav {
 		}
 		&#about .details {
 			background-color: #ffffff;
-			background-image: url('/imgs/bg.svg'); }
+			background-image: url('../imgs/bg.svg'); }
 
 		&#dev h1 {
 			text-transform: lowercase;

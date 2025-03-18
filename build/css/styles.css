@@ -153,7 +153,7 @@ section.intro .bg {
   margin-left: -5vw;
   width: 110vw;
   height: 110vh;
-  background-image: url("/imgs/hero.jpg");
+  background-image: url("../imgs/hero.jpg");
   background-size: cover;
   background-position: top center;
   z-index: 99;
@@ -217,13 +217,13 @@ nav a span {
   transition: 0.5s opacity;
 }
 nav a.design {
-  background-image: url("/imgs/BL9NruAgfOY.jpg");
+  background-image: url("../imgs/BL9NruAgfOY.jpg");
 }
 nav a.dev {
-  background-image: url("/imgs/tumblr_nhdfwyMrPL1sxm4gzo10_1280.jpg");
+  background-image: url("../imgs/tumblr_nhdfwyMrPL1sxm4gzo10_1280.jpg");
 }
 nav a.about {
-  background-image: url("/imgs/tumblr_nc6e88JZP11rnmn4zo1_1280.jpg");
+  background-image: url("../imgs/tumblr_nc6e88JZP11rnmn4zo1_1280.jpg");
 }
 nav a span {
   transform: rotate(90deg);
@@ -305,22 +305,22 @@ nav a.active a.section-link {
   padding-left: 6.1274509804vw;
 }
 .contents .pane#design .feature {
-  background-image: url("/imgs/BL9NruAgfOY.jpg");
+  background-image: url("../imgs/BL9NruAgfOY.jpg");
 }
 .contents .pane#dev .feature {
-  background-image: url("/imgs/tumblr_nhdfwyMrPL1sxm4gzo10_1280.jpg");
+  background-image: url("../imgs/tumblr_nhdfwyMrPL1sxm4gzo10_1280.jpg");
 }
 .contents .pane#about .feature {
-  background-image: url("/imgs/tumblr_nc6e88JZP11rnmn4zo1_1280.jpg");
+  background-image: url("../imgs/tumblr_nc6e88JZP11rnmn4zo1_1280.jpg");
 }
 .contents .pane#design .details {
   background-color: #ffffff;
-  background-image: url("/imgs/bg.svg");
+  background-image: url("../imgs/bg.svg");
 }
 .contents .pane#dev .details {
   color: #ffffff;
   background-color: #3a3a3a;
-  background-image: url("/imgs/bg-dark.svg");
+  background-image: url("../imgs/bg-dark.svg");
 }
 .contents .pane#dev .details .work h3, .contents .pane#dev .details .work ul {
   background-color: #555555;
@@ -331,7 +331,7 @@ nav a.active a.section-link {
 }
 .contents .pane#about .details {
   background-color: #ffffff;
-  background-image: url("/imgs/bg.svg");
+  background-image: url("../imgs/bg.svg");
 }
 .contents .pane#dev h1 {
   text-transform: lowercase;
