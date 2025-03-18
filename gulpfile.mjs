@@ -3,13 +3,9 @@ import gulp from 'gulp';
 
 // Include Our Plugins
 import jshint from 'gulp-jshint';
-import concat from 'gulp-concat';
-import uglify from 'gulp-uglify';
-import rename from 'gulp-rename';
 import autoprefixer from 'gulp-autoprefixer';
 import importCss from 'gulp-import-css';
 import file from 'gulp-file';
-import log from 'fancy-log';
 import * as dartSass from 'sass';
 import gulpSass from 'gulp-sass';
 import webpackstream from 'webpack-stream';
@@ -47,8 +43,6 @@ gulp.task('scripts', gulp.series(
       },
         webpack,
       ))
-      // .pipe(concat('all.js'))
-      // .pipe(uglify({ /* options */ }))
       .pipe(gulp.dest('build/js'))
   }
 )
