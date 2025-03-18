@@ -7,6 +7,7 @@ import concat from 'gulp-concat';
 import uglify from 'gulp-uglify';
 import rename from 'gulp-rename';
 import autoprefixer from 'gulp-autoprefixer';
+import importCss from 'gulp-import-css';
 import file from 'gulp-file';
 import log from 'fancy-log';
 import * as dartSass from 'sass';
@@ -23,13 +24,10 @@ gulp.task('lint', function () {
 });
 
 gulp.task('sass', gulp.series(
-  function cssVendor() {
-    return gulp.src('src/css/vendor/*.css')
-      .pipe(gulp.dest('build/css/vendor'));
-  },
   function scssParse() {
     return gulp.src('src/css/*.scss')
       .pipe(sass())
+      .pipe(importCss())
       .pipe(autoprefixer({
         cascade: false
       }))
@@ -39,10 +37,6 @@ gulp.task('sass', gulp.series(
 );
 
 gulp.task('scripts', gulp.series(
-  function JSVendor() {
-    return gulp.src('src/js/vendor/*.js')
-      .pipe(gulp.dest('build/js/vendor'));
-  },
   function JSParse() {
     return gulp.src('src/js/*.js')
       .pipe(webpackstream({

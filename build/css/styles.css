@@ -1,10 +1,233 @@
+/*! modern-normalize v3.0.1 | MIT License | https://github.com/sindresorhus/modern-normalize */
+
+/*
+Document
+========
+*/
+
+/**
+Use a better box model (opinionated).
+*/
+
+*,
+::before,
+::after {
+  box-sizing: border-box;
+}
+
+html {
+  /* Improve consistency of default fonts in all browsers. (https://github.com/sindresorhus/modern-normalize/issues/3) */
+  font-family: system-ui,
+		'Segoe UI',
+		Roboto,
+		Helvetica,
+		Arial,
+		sans-serif,
+		'Apple Color Emoji',
+		'Segoe UI Emoji';
+  line-height: 1.15;
+  /* 1. Correct the line height in all browsers. */
+  -webkit-text-size-adjust: 100%;
+  /* 2. Prevent adjustments of font size after orientation changes in iOS. */
+  -moz-tab-size: 4;
+  -o-tab-size: 4;
+  tab-size: 4;
+  /* 3. Use a more readable tab size (opinionated). */
+}
+
+/*
+Sections
+========
+*/
+
+body {
+  margin: 0;
+  /* Remove the margin in all browsers. */
+}
+
+/*
+Text-level semantics
+====================
+*/
+
+/**
+Add the correct font weight in Chrome and Safari.
+*/
+
+b,
+strong {
+  font-weight: bolder;
+}
+
+/**
+1. Improve consistency of default fonts in all browsers. (https://github.com/sindresorhus/modern-normalize/issues/3)
+2. Correct the odd 'em' font sizing in all browsers.
+*/
+
+code,
+kbd,
+samp,
+pre {
+  font-family: ui-monospace,
+		SFMono-Regular,
+		Consolas,
+		'Liberation Mono',
+		Menlo,
+		monospace;
+  /* 1 */
+  font-size: 1em;
+  /* 2 */
+}
+
+/**
+Add the correct font size in all browsers.
+*/
+
+small {
+  font-size: 80%;
+}
+
+/**
+Prevent 'sub' and 'sup' elements from affecting the line height in all browsers.
+*/
+
+sub,
+sup {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+}
+
+sub {
+  bottom: -0.25em;
+}
+
+sup {
+  top: -0.5em;
+}
+
+/*
+Tabular data
+============
+*/
+
+/**
+Correct table border color inheritance in Chrome and Safari. (https://issues.chromium.org/issues/40615503, https://bugs.webkit.org/show_bug.cgi?id=195016)
+*/
+
+table {
+  border-color: currentcolor;
+}
+
+/*
+Forms
+=====
+*/
+
+/**
+1. Change the font styles in all browsers.
+2. Remove the margin in Firefox and Safari.
+*/
+
+button,
+input,
+optgroup,
+select,
+textarea {
+  font-family: inherit;
+  /* 1 */
+  font-size: 100%;
+  /* 1 */
+  line-height: 1.15;
+  /* 1 */
+  margin: 0;
+  /* 2 */
+}
+
+/**
+Correct the inability to style clickable types in iOS and Safari.
+*/
+
+button,
+[type='button'],
+[type='reset'],
+[type='submit'] {
+  -webkit-appearance: button;
+}
+
+/**
+Remove the padding so developers are not caught out when they zero out 'fieldset' elements in all browsers.
+*/
+
+legend {
+  padding: 0;
+}
+
+/**
+Add the correct vertical alignment in Chrome and Firefox.
+*/
+
+progress {
+  vertical-align: baseline;
+}
+
+/**
+Correct the cursor style of increment and decrement buttons in Safari.
+*/
+
+::-webkit-inner-spin-button,
+::-webkit-outer-spin-button {
+  height: auto;
+}
+
+/**
+1. Correct the odd appearance in Chrome and Safari.
+2. Correct the outline style in Safari.
+*/
+
+[type='search'] {
+  -webkit-appearance: textfield;
+  /* 1 */
+  outline-offset: -2px;
+  /* 2 */
+}
+
+/**
+Remove the inner padding in Chrome and Safari on macOS.
+*/
+
+::-webkit-search-decoration {
+  -webkit-appearance: none;
+}
+
+/**
+1. Correct the inability to style clickable types in iOS and Safari.
+2. Change font properties to 'inherit' in Safari.
+*/
+
+::-webkit-file-upload-button {
+  -webkit-appearance: button;
+  /* 1 */
+  font: inherit;
+  /* 2 */
+}
+
+/*
+Interactive
+===========
+*/
+
+/*
+Add the correct display in Chrome and Safari.
+*/
+
+summary {
+  display: list-item;
+}
+
 /* TODO: Include font*/
-/* ===================================
-/* DEV 
-/* ===================================*/
-/* ===================================
-/* /DEV 
-/* ===================================*/
+
 html {
   --header-blur: 0;
 }
@@ -15,6 +238,7 @@ body {
   min-height: 110vh;
   overflow: auto;
 }
+
 body h1 {
   color: #999;
 }
@@ -27,36 +251,44 @@ body h1 {
   from {
     bottom: 0em;
   }
+
   to {
     bottom: -1.5em;
   }
 }
+
 @keyframes sectionH1 {
   from {
     left: -5em;
   }
+
   to {
     left: 0.5;
   }
 }
+
 @keyframes sectionContents {
   from {
     margin-top: 0;
   }
+
   to {
     margin-top: -13vh;
   }
 }
+
 @keyframes introBtnBounce {
   from {
     transform: translateY(0);
     opacity: 1;
   }
+
   to {
     transform: translateY(-0.4em);
     opacity: 0.9;
   }
 }
+
 body.main .nav-hamburger {
   opacity: 1;
   transition: 1.5s opacity;
@@ -70,6 +302,7 @@ header {
   right: 0;
   z-index: 500;
 }
+
 header .nav-hamburger {
   position: absolute;
   top: 1rem;
@@ -88,10 +321,12 @@ header .nav-hamburger {
   pointer-events: none;
   transition: opacity 1.5s, font-size 0.5s;
 }
+
 header .nav-hamburger:hover {
   font-size: 1.25rem;
   transition: 0.5s all;
 }
+
 header nav {
   display: none;
   position: fixed;
@@ -104,10 +339,12 @@ header nav {
   align-items: center;
   flex-direction: column;
 }
+
 header nav.visible {
   display: flex;
   transition: 1s easeInOut;
 }
+
 header nav .close {
   position: absolute;
   top: 1em;
@@ -116,6 +353,7 @@ header nav .close {
   font-size: 2rem;
   cursor: pointer;
 }
+
 header nav ul {
   display: flex;
   justify-content: space-around;
@@ -125,10 +363,12 @@ header nav ul {
   padding: 0;
   margin: 0;
 }
+
 header nav ul li {
   font-size: 3rem;
   line-height: 2em;
 }
+
 header nav ul li a {
   text-decoration: none;
   color: #000000;
@@ -148,6 +388,7 @@ section.intro {
   z-index: 100;
   overflow: hidden;
 }
+
 section.intro .bg {
   border: 1px solid red;
   position: fixed;
@@ -162,6 +403,7 @@ section.intro .bg {
   background-position: top center;
   z-index: 99;
 }
+
 section.intro h1 {
   font-size: 2rem;
   color: #ffffff;
@@ -171,15 +413,18 @@ section.intro h1 {
   text-shadow: 1px 5px 10px rgba(0, 0, 0, 0.5);
   z-index: 101;
 }
+
 section.intro h1 span {
   filter: blur(var(--header-blur));
 }
+
 section.intro h1 a {
   color: orange;
   text-decoration: none;
   pointer-events: none;
   position: relative;
 }
+
 section.intro a.introBtn {
   position: absolute;
   bottom: 1em;
@@ -208,6 +453,7 @@ nav {
   pointer-events: none;
   z-index: 10;
 }
+
 nav a {
   display: flex;
   flex: 1;
@@ -220,19 +466,24 @@ nav a {
   background-size: cover;
   pointer-events: auto;
 }
+
 nav a span {
   opacity: 1;
   transition: 0.5s opacity;
 }
+
 nav a.design {
   background-image: url("../imgs/BL9NruAgfOY.jpg");
 }
+
 nav a.dev {
   background-image: url("../imgs/tumblr_nhdfwyMrPL1sxm4gzo10_1280.jpg");
 }
+
 nav a.about {
   background-image: url("../imgs/tumblr_nc6e88JZP11rnmn4zo1_1280.jpg");
 }
+
 nav a span {
   transform: rotate(90deg);
   transform-origin: left top 0;
@@ -246,10 +497,12 @@ nav a span {
   opacity: 1;
   transition: 1s opacity;
 }
+
 nav a span ::before {
   content: "/";
   color: orange;
 }
+
 nav a .shutters {
   position: absolute;
   top: 0;
@@ -259,14 +512,17 @@ nav a .shutters {
   display: block;
   background-color: #000000;
 }
+
 nav a.active {
   opacity: 0;
   transition: 0.5s opacity;
   pointer-events: none;
 }
+
 nav a.active span {
   opacity: 0;
 }
+
 nav a.active a.section-link {
   display: none;
 }
@@ -274,78 +530,98 @@ nav a.active a.section-link {
 .contents {
   text-align: center;
 }
+
 .contents .pane {
   display: none;
   opacity: 0;
   transition: 0.5s opacity;
 }
+
 .contents .pane.active {
   display: block;
   max-width: 100%;
   opacity: 1;
 }
+
 .contents .pane.active h1 {
   animation-name: sectionH1;
   animation-duration: 0.6s;
   animation-fill-mode: both;
   animation-delay: 1s;
 }
+
 .contents .pane.active h1::after {
   animation-name: sectionH1Fill;
   animation-duration: 0.6s;
   animation-fill-mode: both;
   animation-delay: 1.6s;
 }
+
 .contents .pane.active .details {
   animation-name: sectionContents;
   animation-duration: 1s;
   animation-fill-mode: both;
   animation-delay: 1s;
 }
+
 .contents .pane:nth-of-type(1) {
   padding-right: 6.1274509804vw;
 }
+
 .contents .pane:nth-of-type(2) {
   padding-left: 3.0637254902vw;
   padding-right: 3.0637254902vw;
 }
+
 .contents .pane:nth-of-type(3) {
   padding-left: 6.1274509804vw;
 }
+
 .contents .pane#design .feature {
   background-image: url("../imgs/BL9NruAgfOY.jpg");
 }
+
 .contents .pane#dev .feature {
   background-image: url("../imgs/tumblr_nhdfwyMrPL1sxm4gzo10_1280.jpg");
 }
+
 .contents .pane#about .feature {
   background-image: url("../imgs/tumblr_nc6e88JZP11rnmn4zo1_1280.jpg");
 }
+
 .contents .pane#design .details {
   background-color: #ffffff;
   background-image: url("../imgs/bg.svg");
 }
+
 .contents .pane#dev .details {
   color: #ffffff;
   background-color: #3a3a3a;
   background-image: url("../imgs/bg-dark.svg");
 }
-.contents .pane#dev .details .work h3, .contents .pane#dev .details .work ul {
+
+.contents .pane#dev .details .work h3,
+.contents .pane#dev .details .work ul {
   background-color: #555555;
   color: #ffffff;
 }
-.contents .pane#dev .details .work h3 small, .contents .pane#dev .details .work ul small {
+
+.contents .pane#dev .details .work h3 small,
+.contents .pane#dev .details .work ul small {
   border-color: #bbbbbb;
 }
+
 .contents .pane#about .details {
   background-color: #ffffff;
   background-image: url("../imgs/bg.svg");
 }
+
 .contents .pane#dev h1 {
   text-transform: lowercase;
   color: #ffffff;
   background-color: #3a3a3a;
 }
+
 .contents .pane .feature {
   position: relative;
   background-position: center center;
@@ -355,6 +631,7 @@ nav a.active a.section-link {
   max-width: 100%;
   overflow: hidden;
 }
+
 .contents .pane .feature h1 {
   position: absolute;
   bottom: 15vh;
@@ -367,11 +644,13 @@ nav a.active a.section-link {
   margin: 0;
   overflow: hidden;
 }
+
 .contents .pane .feature h1::before {
   content: "/";
   color: orange;
   font-weight: bold;
 }
+
 .contents .pane .feature h1::after {
   content: " ";
   position: absolute;
@@ -381,6 +660,7 @@ nav a.active a.section-link {
   height: 1.5em;
   width: 100%;
 }
+
 .contents .pane .details {
   margin-top: -18vh;
   position: relative;
@@ -389,17 +669,21 @@ nav a.active a.section-link {
   background-repeat: repeat;
   background-size: 1em;
 }
+
 .contents .pane .details blockquote {
   font-size: 1.6rem;
   line-height: 1.8em;
   margin-bottom: 2.5em;
   font-weight: normal;
 }
+
 .contents .pane .details blockquote em {
   color: orange;
   font-style: normal;
 }
-.contents .pane .details blockquote::before, .contents .pane .details blockquote::after {
+
+.contents .pane .details blockquote::before,
+.contents .pane .details blockquote::after {
   content: " ";
   background-color: orange;
   height: 2px;
@@ -411,17 +695,20 @@ nav a.active a.section-link {
   margin-left: auto;
   margin-right: auto;
 }
+
 .contents .pane .details ul.work {
   display: flex;
   justify-content: space-between;
   align-items: center;
   flex-direction: column;
 }
+
 .contents .pane .details ul.work > li {
   display: flex;
   max-width: 80%;
   margin-bottom: 6em;
 }
+
 .contents .pane .details ul.work > li a {
   display: flex;
   flex-direction: row;
@@ -439,15 +726,18 @@ nav a.active a.section-link {
   background-repeat: no-repeat;
   background-size: cover;
 }
+
 .contents .pane .details ul.work > li a.hide {
   opacity: 0;
   transition: 0.1s opacity;
 }
+
 .contents .pane .details ul.work > li a .copy {
   position: relative;
   height: 100%;
   width: 100%;
 }
+
 .contents .pane .details ul.work > li a .copy h3 {
   position: absolute;
   bottom: -0.8em;
@@ -461,6 +751,7 @@ nav a.active a.section-link {
   border-radius: 0.05em;
   text-align: right;
 }
+
 .contents .pane .details ul.work > li a .copy h3 small {
   font-size: 1rem;
   border-top: 2px solid #888888;
@@ -470,6 +761,7 @@ nav a.active a.section-link {
   margin-top: 1em;
   line-height: 3em;
 }
+
 .contents .pane .details ul.work > li a .copy ul {
   position: absolute;
   right: -2em;
@@ -481,19 +773,24 @@ nav a.active a.section-link {
   box-shadow: 1px 5px 15px rgba(0, 0, 0, 0.2);
   border-radius: 0.05em;
 }
+
 .contents .pane .details ul.work > li a .copy ul li {
   text-align: left;
   line-height: 1.8em;
 }
+
 .contents .pane .details .logos {
   margin-bottom: 5em;
 }
+
 .contents .pane .details .logos h2 {
   font-weight: normal;
 }
+
 .contents .pane .details .logos em {
   color: orange;
 }
+
 .contents .pane .details .logos ul {
   width: 40em;
   max-width: 80vw;
@@ -507,15 +804,18 @@ nav a.active a.section-link {
   margin-right: auto;
   padding-left: 0;
 }
+
 .contents .pane .details .logos ul li {
   display: flex;
   margin-bottom: 2em;
 }
+
 .contents .pane .details .avatar {
   height: 15em;
   border-radius: 7.5em;
   margin-bottom: 3em;
 }
+
 .contents .pane .details .personal {
   display: flex;
   justify-content: space-around;
@@ -526,12 +826,14 @@ nav a.active a.section-link {
   margin-right: auto;
   margin-bottom: 5em;
 }
+
 .contents .pane .details .personal > div {
   display: flex;
   flex: 1;
   flex-direction: column;
   align-items: center;
 }
+
 .contents .pane .details .personal > div h3 {
   font-weight: normal;
   font-size: 1.5rem;
@@ -539,11 +841,13 @@ nav a.active a.section-link {
   margin: 0;
   border-bottom: 1px solid #aaaaaa;
 }
+
 .contents .pane .details .personal > div ul {
   list-style: none;
   padding: 0;
   margin: 0 0 3em 0;
 }
+
 .contents .pane .details .personal > div ul li {
   line-height: 1.8em;
 }
@@ -562,50 +866,71 @@ nav a.active a.section-link {
   transition: 1s all, 0.1s z-index 1s;
   display: block;
 }
+
 #modals.design {
   color: #000000;
   background-color: #ffffff;
 }
-#modals.design h1, #modals.design h2, #modals.design p, #modals.design li, #modals.design blockquote {
+
+#modals.design h1,
+#modals.design h2,
+#modals.design p,
+#modals.design li,
+#modals.design blockquote {
   color: #000000;
 }
+
 #modals.design hr {
   border-color: #000000 !important;
 }
+
 #modals.design .close span {
   background-color: #444444;
 }
+
 #modals.dev {
   color: #ffffff;
   background-color: #555555;
 }
-#modals.dev h1, #modals.dev h2, #modals.dev p, #modals.dev li, #modals.dev blockquote {
+
+#modals.dev h1,
+#modals.dev h2,
+#modals.dev p,
+#modals.dev li,
+#modals.dev blockquote {
   color: #ffffff;
 }
+
 #modals.dev hr {
   border-color: #ffffff !important;
 }
+
 #modals.dev .close span {
   background-color: #ffffff;
 }
+
 #modals.renderBehind {
   display: block;
   z-index: -1;
 }
+
 #modals.show {
   z-index: 500;
   opacity: 1;
   transition: 0.5s opacity;
   display: block;
 }
+
 #modals.show .close span:nth-of-type(1) {
   transition: 1s transform ease-in-out;
   transform: rotate(45deg);
 }
+
 #modals.show .close span:nth-of-type(2) {
   transition: 1.5s;
   transform: rotate(-45deg);
 }
+
 #modals .section {
   position: absolute;
   top: 0;
@@ -617,41 +942,50 @@ nav a.active a.section-link {
   padding-bottom: 3em;
   display: none;
 }
+
 #modals .section img {
   max-width: calc(90% - 4em);
   box-shadow: 1px 5px 10px rgba(0, 0, 0, 0.1) inset;
   padding: 2em;
 }
+
 #modals .section img.feature {
   box-shadow: none;
   padding: 0;
   max-width: 100%;
 }
+
 #modals .section.show {
   display: block;
 }
+
 #modals .section h1 {
   line-height: 3rem;
   font-size: 2.8em;
   font-weight: normal;
 }
+
 #modals .section h1 .subtitle {
   display: block;
 }
+
 #modals .section h2 {
   text-align: center;
 }
+
 #modals .section hr {
   margin: 4em auto;
   border: 3px solid #000000;
   width: 20em;
 }
+
 #modals .section hr.head {
   margin-top: 2rem;
   margin-bottom: 2rem;
   border: 3px solid #000000;
   width: 100%;
 }
+
 #modals .section blockquote {
   border: 1px solid #000000;
   border-left: none;
@@ -661,23 +995,28 @@ nav a.active a.section-link {
   text-align: center;
   width: 16em;
 }
+
 #modals .section p {
   line-height: 1.8em;
   margin: 0 auto 2.4em auto;
   width: 40em;
   max-width: 80vw;
 }
+
 #modals .section p.text-center {
   text-align: center;
 }
+
 #modals .section ul {
   margin: 0 auto 2.4em auto;
 }
+
 #modals .section ul li {
   width: 40em;
   max-width: calc(80vw - 2.4em);
   line-height: 1.8em;
 }
+
 #modals .section .columns {
   display: flex;
   justify-content: center;
@@ -685,13 +1024,16 @@ nav a.active a.section-link {
   flex-wrap: flex-wrap;
   flex-direction: column;
 }
+
 #modals .section .columns .col {
   padding: 0 4em;
   margin-bottom: 2em;
 }
+
 #modals .section .columns .col ul {
   width: auto;
 }
+
 #modals .close {
   position: fixed;
   top: 0.5rem;
@@ -701,9 +1043,11 @@ nav a.active a.section-link {
   cursor: pointer;
   padding: 1em;
 }
+
 #modals .close > div {
   position: relative;
 }
+
 #modals .close span {
   position: absolute;
   top: 0;
@@ -712,9 +1056,11 @@ nav a.active a.section-link {
   height: 0.2em;
   display: block;
 }
+
 #modals .close span:nth-of-type(1) {
   transform: rotate(-360deg);
 }
+
 #modals .close span:nth-of-type(2) {
   transform: rotate(-360deg);
 }
@@ -727,9 +1073,11 @@ nav a.active a.section-link {
   overflow: hidden;
   display: none;
 }
+
 #modal-bubble.show {
   display: block;
 }
+
 #modal-bubble img {
   -o-object-fit: cover;
   object-fit: cover;
@@ -747,12 +1095,15 @@ nav a.active a.section-link {
   line-height: 10em;
   margin-bottom: 1em;
 }
+
 #design-sn .color-circle.black {
   background-color: #000;
 }
+
 #design-sn .color-circle.red {
   background-color: #c40000;
 }
+
 #design-sn ul.color-spec {
   display: flex;
   flex-direction: column;
@@ -760,21 +1111,25 @@ nav a.active a.section-link {
   list-style: none;
   padding-left: 0;
 }
+
 #design-sn ul.color-spec li {
   width: 5em;
   font-weight: normal;
   line-height: 1.4em;
   text-align: center;
 }
+
 #design-sn ul.color-spec li label {
   width: 2em;
   text-align: right;
 }
+
 #design-sn ul.color-spec li:first-of-type {
   text-align: center;
   font-weight: normal;
   line-height: 2.4em;
 }
+
 #design-sn ul.color-spec li:nth-of-type(4) {
   padding-bottom: 1.2em;
 }
@@ -783,12 +1138,15 @@ nav a.active a.section-link {
   section.intro h1 {
     font-size: 4rem;
   }
+
   #modals .section .columns {
     flex-direction: row;
   }
+
   #modals .section ul li {
     width: auto;
   }
+
   .contents .pane .details .personal {
     flex-direction: row;
   }

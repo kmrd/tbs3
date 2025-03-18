@@ -1,32 +1,6 @@
+@import url('../../node_modules/modern-normalize/modern-normalize.css');
+
 /* TODO: Include font*/
-
-/* ===================================
-/* DEV 
-/* ===================================*/
-// section.intro, nav {
-//   display: none !important;
-// }
-
-// .contents #design {
-//   display: block !important;
-//   opacity: 1;
-
-// }
-
-// 	&.show {
-// 		display: block;
-// 	}
-
-// 	img {
-// 		object-fit: cover;
-// 		width: 100%;
-// 		height: 100%;
-// 	}
-// }
-/* ===================================
-/* /DEV 
-/* ===================================*/
-
 
 html {
 	--header-blur: 0;
