@@ -29,8 +29,7 @@ gulp.task('sass', gulp.series(
       }))
       .pipe(gulp.dest('build/css'));
   }
-)
-);
+));
 
 gulp.task('scripts', gulp.series(
   function JSParse() {
@@ -45,8 +44,7 @@ gulp.task('scripts', gulp.series(
       ))
       .pipe(gulp.dest('build/js'))
   }
-)
-);
+));
 
 gulp.task('html', function (done) {
   return gulp.src('src/*.html')
