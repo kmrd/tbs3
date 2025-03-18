@@ -1,53 +1,71 @@
 const Parallax = require('parallax-js');
 const { gsap } = require('gsap');
 const { Home } = require('./home');
+const { Shutters } = require('./shutters');
 
 class Page {
 	// Track states
 	isHome;
+	transitionTimeline = gsap.timeline();
 
-	constructor() {}
+	// "Components"
+	home;
+	shutters;
+
+	homeScrollingDeadzone = '100'; //px
+
+	constructor() { }
 
 	init() {
 		this.isHome = true;
-		const home = new Home();
-		home.init();
+		this.home = new Home();
+		this.shutters = new Shutters();
+
+		this.initHomeSection();
+		this.navigateToShutters(); // debugging only
+		// this.initShutters();
 	}
 
-	// window.addEventListener('scroll', (e) => {
-	// 	if (!isHome) {
-	// 		if (last_known_scroll_position < window.scrollY) {
-	// 			// history.pushState({ section: '#main' }, "Main", "#main");
-	// 			parallaxInstance.disable();
+	initHomeSection() {
+		// Set the callback for when the scroll button is clicked
+		this.home.setScrollBtnCallback(this.navigateToShutters.bind(this));
 
-	// 			introTimeLine.play();
-	// 			// document.querySelector('body').classList.add('main');
-	// 		} else {
-	// 			// history.pushState({ section: '#home'}, "Home", "/");
-	// 			parallaxInstance.enable();
-	// 			introTimeLine.reverse();
-	// 			// document.querySelector('body').classList.remove('main');
-	// 		}
+		window.addEventListener('scroll', (e) => {
+			// // Scroll the window. This triggers the intro 
+			// // animation as if the user had scrolled themselves
+			// const maxHeight = Math.max(
+			//   document.body.scrollHeight, document.body.offsetHeight,
+			//   document.documentElement.clientHeight, document.documentElement.scrollHeight,
+			//   document.documentElement.offsetHeight);
+			// if (window.scrollY == maxHeight) {
+			//   window.scrollTo(0, 0);
+			// }
 
-	// 		last_known_scroll_position = window.scrollY;
-	// 	}
-	// });
+			if (this.isHome) {
+				this.navigateToShutters();
+				// 	if (last_known_scroll_position < window.scrollY) {
+				// 		// history.pushState({ section: '#main' }, "Main", "#main");
+				// 		this.home.getParallaxInstance().disable();
 
-	showSliders() {
-		const maxHeight = Math.max(
-			document.body.scrollHeight,
-			document.body.offsetHeight,
-			document.documentElement.clientHeight,
-			document.documentElement.scrollHeight,
-			document.documentElement.offsetHeight,
-		);
-		if (window.scrollY == maxHeight) {
-			window.scrollTo(0, 0);
-		}
-		gsap.to(window, {
-			duration: 0.5,
-			scrollTo: { y: '100' },
+				// 		// introTimeLine.play();
+				// 		// document.querySelector('body').classList.add('main');
+				// 	} else {
+				// 		// history.pushState({ section: '#home'}, "Home", "/");
+				// 		this.home.getParallaxInstance().enable();
+				// 		introTimeLine.reverse();
+				// 		// document.querySelector('body').classList.remove('main');
+				// 	}
+
+				// 	last_known_scroll_position = window.scrollY;
+			}
 		});
+	}
+
+	navigateToShutters() {
+		this.isHome = false;
+		console.log('show shutters');
+		this.home.hide(this.transitionTimeline);
+		this.shutters.show(this.transitionTimeline);
 	}
 }
 
@@ -110,79 +128,79 @@ let currentSection;
 
 
 
-function initNav() {
-	isShowingContents = false;
-	let intro = document.querySelector('.intro');
-	navLinks = document.querySelectorAll('nav>a');
-	navShutters = document.querySelectorAll('.shutters');
-	sections = document.querySelectorAll('section>.pane');
-	introTimeLine = gsap.timeline();
+// function initNav() {
+// 	isShowingContents = false;
+// 	let intro = document.querySelector('.intro');
+// 	navLinks = document.querySelectorAll('nav>a');
+// 	navShutters = document.querySelectorAll('.shutters');
+// 	sections = document.querySelectorAll('section>.pane');
+// 	introTimeLine = gsap.timeline();
 
-	// Hide the intro and retract  the navShutters
-	// introTimeLine.to(intro, 0.8, { ease: "expo.easeInOut", y: '-100vh' });
-	// introTimeLine.add(gsap.staggerTo(navShutters, 0.5, { ease: "expo.easeInOut", left: '100%' }, 0.08));
-	introTimeLine.stop();
+// 	// Hide the intro and retract  the navShutters
+// 	introTimeLine.to(intro, 0.8, { ease: "expo.easeInOut", y: '-100vh' });
+// 	introTimeLine.add(gsap.staggerTo(navShutters, 0.5, { ease: "expo.easeInOut", left: '100%' }, 0.08));
+// 	introTimeLine.stop();
 
-	for (let i = 0; i < navLinks.length; i++) {
-		navLinks[i].addEventListener('mouseover', (e) => {
-			if (!isShowingContents) {
-				gsap.to(navLinks, 0.5, {
-					flex: '1'
-				});
-				gsap.killTweensOf(e.target, { flex: true });
-				gsap.to(e.target, 0.5, {
-					flex: '1.3'
-				});
-			}
-		});
+// 	for (let i = 0; i < navLinks.length; i++) {
+// 		navLinks[i].addEventListener('mouseover', (e) => {
+// 			if (!isShowingContents) {
+// 				gsap.to(navLinks, 0.5, {
+// 					flex: '1'
+// 				});
+// 				gsap.killTweensOf(e.target, { flex: true });
+// 				gsap.to(e.target, 0.5, {
+// 					flex: '1.3'
+// 				});
+// 			}
+// 		});
 
-		// TODO: Hookup hamburger nav to these animations
-		navLinks[i].addEventListener('click', (e) => {
-			e.preventDefault();
-			e.stopPropagation();
+// 		// TODO: Hookup hamburger nav to these animations
+// 		navLinks[i].addEventListener('click', (e) => {
+// 			e.preventDefault();
+// 			e.stopPropagation();
 
-			setState(e);
+// 			setState(e);
 
-			sectionTimeLine = gsap.timeline();
+// 			sectionTimeLine = gsap.timeline();
 
-			// If we're inside of a section, backout of it
-			if (isShowingContents && currentSection) {
-				// console.log('backingout');
-				sectionTimeLine.add(gsap.to(window, 0.3, {
-					scrollTo: 0,
-					onComplete: setStateNav
-				}));
-			}
+// 			// If we're inside of a section, backout of it
+// 			if (isShowingContents && currentSection) {
+// 				// console.log('backingout');
+// 				sectionTimeLine.add(gsap.to(window, 0.3, {
+// 					scrollTo: 0,
+// 					onComplete: setStateNav
+// 				}));
+// 			}
 
-			sectionTimeLine.add("startTransition");
+// 			sectionTimeLine.add("startTransition");
 
-			sectionTimeLine.add(gsap.to(navLinks, 0.8, {
-				ease: "expo.easeInOut",
-				flex: '1'
-			}), "startTransition");
-			gsap.killTweensOf(e.target, { flex: true });
-			sectionTimeLine.add(gsap.to(e.target, 0.8, {
-				ease: "expo.easeInOut",
-				flex: '30',
-				onStart: setTransitionStateToContents,
-				onStartParams: [e.target],
-				onComplete: setStateContents,
-				onCompleteParams: [e.target],
-				onReverseComplete: unsetStateContents
-			}), "startTransition");
+// 			sectionTimeLine.add(gsap.to(navLinks, 0.8, {
+// 				ease: "expo.easeInOut",
+// 				flex: '1'
+// 			}), "startTransition");
+// 			gsap.killTweensOf(e.target, { flex: true });
+// 			sectionTimeLine.add(gsap.to(e.target, 0.8, {
+// 				ease: "expo.easeInOut",
+// 				flex: '30',
+// 				onStart: setTransitionStateToContents,
+// 				onStartParams: [e.target],
+// 				onComplete: setStateContents,
+// 				onCompleteParams: [e.target],
+// 				onReverseComplete: unsetStateContents
+// 			}), "startTransition");
 
-			currentSection = document.querySelector(e.target.hash);
-		});
-	}
+// 			currentSection = document.querySelector(e.target.hash);
+// 		});
+// 	}
 
 
-	// TODO: hook up hamburger
-	const hamburger = document.querySelector('.nav-hamburger');
-	hamburger.addEventListener('click', (e) => {
-		hideContent();
-		sectionTimeLine.reverse();
-	})
-}
+// // TODO: hook up hamburger
+// const hamburger = document.querySelector('.nav-hamburger');
+// hamburger.addEventListener('click', (e) => {
+// 	hideContent();
+// 	sectionTimeLine.reverse();
+// })
+// }
 
 
 // Do this to get back to 3 shutters layout

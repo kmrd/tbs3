@@ -18,7 +18,7 @@ export class Blob {
     this.numPoints = points;
     this.angleStep = (Math.PI * 2) / this.numPoints;
     this.radius = radius;
-  
+
     this.nosieFn = createNoise2D();
 
     if (typeof bubbleEl === 'string') {
