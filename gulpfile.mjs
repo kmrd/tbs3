@@ -43,10 +43,8 @@ gulp.task('scripts', gulp.series(
   function JSParse() {
     return gulp.src('src/js/*.js')
       .pipe(concat('all.js'))
+      .pipe(uglify({ /* options */}))
       .pipe(gulp.dest('build/js'))
-      // .pipe(rename('all.min.js'))
-      // .pipe(uglify())
-      // .pipe(gulp.dest('build/js'));
     }
   )
 );
