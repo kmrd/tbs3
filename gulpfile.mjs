@@ -58,12 +58,12 @@ gulp.task('html', function(done) {
 
 
 gulp.task('rootassets', function() {
-  return gulp.src(['src/*','!src/*.html','!src/touch'])
+  return gulp.src(['src/*','!src/*.html','!src/touch'], {encoding: false})
     .pipe(gulp.dest('build'));
 });
 
 gulp.task('imgs', function() {
-  return gulp.src('src/imgs/*')
+  return gulp.src('src/imgs/*', {encoding: false})
     .pipe(gulp.dest('build/imgs'));
 });
 
@@ -71,9 +71,6 @@ gulp.task('touch', function touch() {
   return file('touch', String(new Date().getTime()), { src: true })
     .pipe( gulp.dest('build'));
 });
-
-
-
 
 // Watch Files For Changes
 gulp.task('watch', function() {
