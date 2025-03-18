@@ -1,15 +1,17 @@
 // Include gulp
-var gulp      = require('gulp');
+import gulp from 'gulp';
 
 // Include Our Plugins
-var jshint        = require('gulp-jshint');
-var sass          = require('gulp-sass');
-var concat        = require('gulp-concat');
-var uglify        = require('gulp-uglify');
-var rename        = require('gulp-rename');
-var autoprefixer  = require('gulp-autoprefixer');
-var file          = require('gulp-file');
-var log           = require('fancy-log');
+import jshint from 'gulp-jshint';
+import concat from 'gulp-concat';
+import uglify from 'gulp-uglify';
+import rename from 'gulp-rename';
+import autoprefixer from 'gulp-autoprefixer';
+import file from 'gulp-file';
+import log from 'fancy-log';
+import * as dartSass from 'sass';
+import gulpSass from 'gulp-sass';
+const sass = gulpSass(dartSass);
 
 gulp.task('lint', function() {
   return gulp.src('src/js/*.js')
@@ -26,7 +28,6 @@ gulp.task('sass', gulp.series(
     return gulp.src('src/css/*.scss')
       .pipe(sass())
       .pipe(autoprefixer({
-        browsers: ['last 2 versions'],
         cascade: false
       }))
       .pipe(gulp.dest('build/css'));
