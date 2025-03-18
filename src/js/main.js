@@ -1,46 +1,42 @@
-// TODO: Make ES6 style classes? Use () => {} notation (needs transpiling)
-// TODO: Use Babel to transform Classes into something that IE11 can interpret?
+let isShowingContents; // if the nav sections are showing their content
+let last_known_scroll_position;
 
-var isShowingContents; // if the nav sections are showing their content
-var last_known_scroll_position;
+let parallaxInstance;
 
-var parallaxInstance;
+let navShutters;
+let introTimeLine;
+let sectionTimeLine;
+let navLinks; // main content links
 
-var navShutters;
-var introTimeLine;
-var sectionTimeLine;
-var navLinks; // main content links
-
-// var hamburgerLinks; // menu links
-var sections; // all the content sections
-var currentSection;
+// let hamburgerLinks; // menu links
+let sections; // all the content sections
+let currentSection;
 
 
-function initIntro () {
-	let intro = document.querySelector('.intro');
-	let introBtn = document.querySelector('.introBtn');
+function initIntro() {
+	const intro = document.querySelector('.intro');
+	const introBtn = document.querySelector('.introBtn');
 
-	introBtn.addEventListener('click', function(e) {
+	introBtn.addEventListener('click', (e) => {
 		e.preventDefault();
 		e.stopPropagation();
-		
+
 		// Scroll the window. This triggers the intro 
 		// animation as if the user had scrolled themselves
-		var maxHeight = Math.max(
-			document.body.scrollHeight, document.body.offsetHeight, 
-	        document.documentElement.clientHeight, document.documentElement.scrollHeight,
-            document.documentElement.offsetHeight);
-		if(window.scrollY == maxHeight) {
+		const maxHeight = Math.max(
+			document.body.scrollHeight, document.body.offsetHeight,
+			document.documentElement.clientHeight, document.documentElement.scrollHeight,
+			document.documentElement.offsetHeight);
+		if (window.scrollY == maxHeight) {
 			window.scrollTo(0, 0);
 		}
-		TweenLite.to(window, 0.5, {scrollTo:{y:'100'}});
-
+		TweenLite.to(window, 0.5, { scrollTo: { y: '100' } });
 	});
 
-	window.addEventListener('scroll', function(e) {
-		if(!isShowingContents) {
+	window.addEventListener('scroll', (e) => {
+		if (!isShowingContents) {
 
-			if ( last_known_scroll_position < window.scrollY ) {
+			if (last_known_scroll_position < window.scrollY) {
 				// history.pushState({ section: '#main' }, "Main", "#main");
 				parallaxInstance.disable();
 
@@ -68,21 +64,15 @@ function initNav() {
 	introTimeLine = new TimelineLite();
 
 	// Hide the intro and retract  the navShutters
-	introTimeLine.add( TweenMax.to(intro, 0.8, { ease: Expo.easeInOut, y:'-100vh'}));
-	introTimeLine.add( TweenMax.staggerTo(navShutters, 0.5, { ease: Expo.easeInOut, left:'100%'}, 0.08 ) );
+	introTimeLine.add(TweenMax.to(intro, 0.8, { ease: Expo.easeInOut, y: '-100vh' }));
+	introTimeLine.add(TweenMax.staggerTo(navShutters, 0.5, { ease: Expo.easeInOut, left: '100%' }, 0.08));
 	introTimeLine.stop();
 
-
-	// Check if there's a historic state to resume to
-	// initState();
-
-
-	for( let i = 0; i < navLinks.length; i++) {
-		
-		navLinks[i].addEventListener('mouseover', function(e) {
-			if ( !isShowingContents ) {
+	for (let i = 0; i < navLinks.length; i++) {
+		navLinks[i].addEventListener('mouseover', (e) => {
+			if (!isShowingContents) {
 				TweenMax.to(navLinks, 0.5, {
-					flex:'1'
+					flex: '1'
 				});
 				TweenMax.killTweensOf(e.target, { flex: true });
 				TweenMax.to(e.target, 0.5, {
@@ -92,7 +82,7 @@ function initNav() {
 		});
 
 		// TODO: Hookup hamburger nav to these animations
-		navLinks[i].addEventListener('click', function(e) {
+		navLinks[i].addEventListener('click', (e) => {
 			e.preventDefault();
 			e.stopPropagation();
 
@@ -103,28 +93,28 @@ function initNav() {
 			// If we're inside of a section, backout of it
 			if (isShowingContents && currentSection) {
 				// console.log('backingout');
-				sectionTimeLine.add( TweenMax.to(window, 0.3, {
+				sectionTimeLine.add(TweenMax.to(window, 0.3, {
 					scrollTo: 0,
 					onComplete: setStateNav
-				}) );
+				}));
 			}
 
 			sectionTimeLine.add("startTransition");
 
-			sectionTimeLine.add( TweenMax.to(navLinks, 0.8, {
+			sectionTimeLine.add(TweenMax.to(navLinks, 0.8, {
 				ease: Expo.easeInOut,
-				flex:'1'
-			}), "startTransition" );
+				flex: '1'
+			}), "startTransition");
 			TweenMax.killTweensOf(e.target, { flex: true });
-			sectionTimeLine.add( TweenMax.to(e.target, 0.8, {
+			sectionTimeLine.add(TweenMax.to(e.target, 0.8, {
 				ease: Expo.easeInOut,
-				flex:'30',
+				flex: '30',
 				onStart: setTransitionStateToContents,
 				onStartParams: [e.target],
 				onComplete: setStateContents,
 				onCompleteParams: [e.target],
 				onReverseComplete: unsetStateContents
-			}), "startTransition" );
+			}), "startTransition");
 
 			currentSection = document.querySelector(e.target.hash);
 		});
@@ -132,12 +122,10 @@ function initNav() {
 
 
 	// TODO: hook up hamburger
-	var hamburger = document.querySelector('.nav-hamburger');
-	hamburger.addEventListener('click', function(e) {
+	const hamburger = document.querySelector('.nav-hamburger');
+	hamburger.addEventListener('click', (e) => {
 		hideContent();
 		sectionTimeLine.reverse();
-		// let nav = document.querySelector('nav');
-		// nav.classList.toggle('visible');
 	})
 }
 
@@ -149,14 +137,12 @@ function setStateNav(params) {
 	deactivateContentPanes(params);
 }
 function deactivateLinks() {
-	for(let i = 0; i < navLinks.length; i++)
-	{
+	for (let i = 0; i < navLinks.length; i++) {
 		navLinks[i].classList.remove('active');
 	}
 }
 function deactivateContentPanes() {
-	for(let i = 0; i < sections.length; i++)
-	{
+	for (let i = 0; i < sections.length; i++) {
 		sections[i].classList.remove('active');
 	}
 }
@@ -167,34 +153,34 @@ function setTransitionStateToContents(target) {
 	isShowingContents = true;
 
 	// undo the scrolling needed for the intro
-	window.scrollTo(0,0);
-	
+	window.scrollTo(0, 0);
+
 	// get the content ready to reveal in the background
 	let content = document.querySelector(target.hash);
-	
+
 	content.classList.add('active');
 
 	document.querySelector('body').classList.add('main');
 }
 function unsetTransitionStateToContents() {
 	// give some space to allow for scrolling up into the intro
-	var maxHeight = Math.max( document.body.scrollHeight, document.body.offsetHeight, 
-                    document.documentElement.clientHeight, document.documentElement.scrollHeight,
-                    document.documentElement.offsetHeight);
-	if(window.scrollY == 0) {
+	const maxHeight = Math.max(document.body.scrollHeight, document.body.offsetHeight,
+		document.documentElement.clientHeight, document.documentElement.scrollHeight,
+		document.documentElement.offsetHeight);
+	if (window.scrollY == 0) {
 		last_known_scroll_position = 0;
 		window.scrollTo(0, maxHeight);
 	}
 
 	isShowingContents = false;
 
-	var panes = document.querySelectorAll('.pane.active');
+	const panes = document.querySelectorAll('.pane.active');
 
-	for(var i=0; i < panes.length; i++) {
+	for (let i = 0; i < panes.length; i++) {
 		panes[i].classList.remove('active');
 	}
 
-	document.querySelector('body').classList.remove('main');	
+	document.querySelector('body').classList.remove('main');
 }
 function setStateContents(params) {
 	showContent(params);
@@ -209,8 +195,8 @@ function showContent(target) {
 	// console.log(target);
 }
 function hideContent() {
-	var links = document.querySelectorAll('a.section-link.active');
-	for( var i = 0; i < links.length; i++) {
+	const links = document.querySelectorAll('a.section-link.active');
+	for (let i = 0; i < links.length; i++) {
 		links[i].classList.remove('active');
 	}
 }
@@ -219,14 +205,14 @@ function hideContent() {
 // Expects the <a> element
 // - needs href="#alpha"; title=""
 function setState(el) {
-	// var stateObj = { section: el.target.hash };
+	// const stateObj = { section: el.target.hash };
 	// history.pushState(stateObj, el.target.title, el.target.href);
 }
 
 function initState() {
 	// if null -- this is the first visit
-	if ( history.state !== null ) {
-		switch( history.state.section ) {
+	if (history.state !== null) {
+		switch (history.state.section) {
 			case "#design":
 				console.log('design only');
 				introTimeLine.play();
@@ -257,12 +243,12 @@ function initState() {
 }
 
 function initParallax() {
-	var scene = document.querySelector('.intro');
+	const scene = document.querySelector('.intro');
 	parallaxInstance = new Parallax(scene, {
-	  	relativeInput: true,
-	  	hoverOnly: true,
-	  	selector: '.bg, h1',
-	  	pointerEvents: true
+		relativeInput: true,
+		hoverOnly: true,
+		selector: '.bg, h1',
+		pointerEvents: true
 	});
 }
 
@@ -271,50 +257,52 @@ function initContentParallax() {
 }
 function updateContentParallax() {
 	// function parallaxScroll(){
-    let scrolled = window.pageYOffset / window.innerHeight * 100;
+	let scrolled = window.pageYOffset / window.innerHeight * 100;
 
-    let h1 = document.querySelectorAll('.contents .pane h1');
+	let h1 = document.querySelectorAll('.contents .pane h1');
 	TweenMax.to(h1, 0.8, {
 		ease: Expo.easeOut,
-		bottom: 15 + (scrolled * 0.5) + 'vh' });
+		bottom: 15 + (scrolled * 0.5) + 'vh'
+	});
 
-    let feature = document.querySelectorAll('.contents .pane .feature')
+	let feature = document.querySelectorAll('.contents .pane .feature')
 	TweenMax.to(feature, 0.8, {
 		ease: Expo.easeOut,
-		backgroundPosition: '50% ' + (50 + (scrolled * 0.1)) + '%' });
+		backgroundPosition: '50% ' + (50 + (scrolled * 0.1)) + '%'
+	});
 }
 
 function initModal() {
 	let btns = document.querySelectorAll('.modal-btn');
 
-	for(let i = 0; i < btns.length; i++) {
-		var btn = btns[i];
+	for (let i = 0; i < btns.length; i++) {
+		const btn = btns[i];
 
-		btn.addEventListener('click', function(e) {
+		btn.addEventListener('click', function (e) {
 			e.preventDefault();
 
-			var clickedBtn = e.target.parentNode;
-			var modal = document.getElementById('modals');
-			var bubble = document.getElementById('modal-bubble');
+			const clickedBtn = e.target.parentNode;
+			const modal = document.getElementById('modals');
+			const bubble = document.getElementById('modal-bubble');
 
 			// put the right image into the bubble
-			
-			var imgSrc = clickedBtn.style.backgroundImage.replace(/.*\s?url\([\'\"]?/, '').replace(/[\'\"]?\).*/, '');
+
+			const imgSrc = clickedBtn.style.backgroundImage.replace(/.*\s?url\([\'\"]?/, '').replace(/[\'\"]?\).*/, '');
 			bubble.querySelector('img').setAttribute('src', imgSrc);
 
 			// name of contents we want (eg. #design-stopsign)
-			var targetHref = e.target.parentNode.dataset.contents;
+			const targetHref = e.target.parentNode.dataset.contents;
 			// console.log('a.modal-btn class:', e.target.parentNode.dataset.class);
 
 			// Setup the correct modal SECTION to show
-			var modalSection = document.getElementById(targetHref)
+			const modalSection = document.getElementById(targetHref)
 
 			// Setup the correct modal configuration
-			if( clickedBtn.dataset.class == 'design' ) {
+			if (clickedBtn.dataset.class == 'design') {
 				modal.classList.add('design');
 				modal.classList.remove('dev');
 			}
-			else if( clickedBtn.dataset.class == 'develop' ) {
+			else if (clickedBtn.dataset.class == 'develop') {
 				modal.classList.add('dev');
 				modal.classList.remove('design');
 			}
@@ -322,25 +310,25 @@ function initModal() {
 			// Show the modal, but behind the contents
 			modalSection.classList.add('show');
 			modal.classList.add('renderBehind');
-			modal.scrollTo(0,0);
+			modal.scrollTo(0, 0);
 
 			// get the final position
-			var targetImg = modalSection.querySelector('img');
-			var targetCoords = targetImg.getBoundingClientRect();
+			const targetImg = modalSection.querySelector('img');
+			const targetCoords = targetImg.getBoundingClientRect();
 			// console.log('target coords:', targetImg.getBoundingClientRect());
-			
+
 
 			// Animate a surrogate image from the current clicked position to the new desired position
 			// Hide the originall clicked button to avoid double vision
 			bubble.classList.add('show');
 
-			var coords = clickedBtn.getBoundingClientRect();
+			const coords = clickedBtn.getBoundingClientRect();
 			// console.log('start coords:', coords);
-			var scrolled = window.scrollY;
-			bubble.style.top = coords.top + scrolled +'px';
-			bubble.style.left = coords.left +'px';
-			bubble.style.width = coords.width +'px';
-			bubble.style.height = coords.height +'px';
+			const scrolled = window.scrollY;
+			bubble.style.top = coords.top + scrolled + 'px';
+			bubble.style.left = coords.left + 'px';
+			bubble.style.width = coords.width + 'px';
+			bubble.style.height = coords.height + 'px';
 			// console.log(window.scrollY);
 
 			TweenMax.to(bubble, .75, {
@@ -349,10 +337,10 @@ function initModal() {
 				left: targetCoords.x,
 				width: targetCoords.width,
 				height: targetCoords.height,
-				onStart: function() {
+				onStart: function () {
 					clickedBtn.classList.add('hide');
 				},
-				onComplete: function() {
+				onComplete: function () {
 
 					// Bring the modal to the front
 					modal.classList.add('show');
@@ -362,40 +350,32 @@ function initModal() {
 		});
 	}
 
-	let close = document.getElementById('close-btn').addEventListener('click', function(e) {
+	let close = document.getElementById('close-btn').addEventListener('click', function (e) {
 
-		var modalBtns = document.querySelectorAll('a.modal-btn.hide');
-		for( var i = 0; i < modalBtns.length; i++) {
+		const modalBtns = document.querySelectorAll('a.modal-btn.hide');
+		for (let i = 0; i < modalBtns.length; i++) {
 			modalBtns[i].classList.remove('hide');
 		}
 
-
-		var bubble = document.getElementById('modal-bubble');
+		const bubble = document.getElementById('modal-bubble');
 		bubble.classList.remove('show');
 
-		var modal = document.getElementById('modals')
-		modal.classList.remove('show','renderBehind');
+		const modal = document.getElementById('modals')
+		modal.classList.remove('show', 'renderBehind');
 
-		var sections = document.querySelectorAll('#modals .section');
-		for(let j = 0; j < sections.length; j++) {
-			// console.log(sections[j]);
+		const sections = document.querySelectorAll('#modals .section');
+		for (let j = 0; j < sections.length; j++) {
 			sections[j].classList.remove('show');
 		}
 	});
 }
 
 
-window.addEventListener('DOMContentLoaded', function() {
+window.addEventListener('DOMContentLoaded', function () {
 	initParallax();
 	initIntro();
 	initNav();
 	initContentParallax();
 
 	initModal();
-	// initState(); // This is called in initIntro -- AFTER the timelines are defined
-	// console.log('DOM loaded')
 });
-
-// window.onload = function() {
-// 	console.log('all contents loaded');
-// };
