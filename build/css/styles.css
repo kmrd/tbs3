@@ -658,6 +658,7 @@ nav a.active a.section-link {
   content: "/";
   color: orange;
   font-weight: bold;
+  padding-left: 0.25rem;
 }
 
 .contents .pane .feature h1::after {
