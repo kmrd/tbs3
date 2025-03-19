@@ -9,8 +9,8 @@ class Page {
 	transitionTimeline = gsap.timeline();
 
 	// "Components"
-	home;
-	shutters;
+	home = new Home();
+	shutters = new Shutters();
 
 	homeScrollingDeadzone = '100'; //px
 
@@ -18,8 +18,6 @@ class Page {
 
 	init() {
 		this.isHome = true;
-		this.home = new Home();
-		this.shutters = new Shutters();
 
 		this.initHomeSection();
 		// this.navigateToShutters(); // debugging only
@@ -30,7 +28,10 @@ class Page {
 		// Set the callback for when the scroll button is clicked
 		this.home.setScrollBtnCallback(this.navigateToShutters.bind(this));
 
+		this.centerScrollableRegion();
+
 		window.addEventListener('scroll', (e) => {
+			// Monitor when the scroll hits the top -- then 
 			// // Scroll the window. This triggers the intro 
 			// // animation as if the user had scrolled themselves
 			// const maxHeight = Math.max(
@@ -42,7 +43,7 @@ class Page {
 			// }
 
 			if (this.isHome) {
-				this.navigateToShutters();
+				// this.navigateToShutters();
 				// 	if (last_known_scroll_position < window.scrollY) {
 				// 		// history.pushState({ section: '#main' }, "Main", "#main");
 				// 		this.home.getParallaxInstance().disable();
@@ -58,6 +59,15 @@ class Page {
 
 				// 	last_known_scroll_position = window.scrollY;
 			}
+		});
+	}
+
+	centerScrollableRegion() {
+		const viewportHeight = Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0);
+
+		window.scrollTo({
+			top: viewportHeight / 2,
+			behavior: "instant",
 		});
 	}
 
@@ -122,26 +132,6 @@ let currentSection;
 // 		last_known_scroll_position = window.scrollY;
 // 	}
 // });
-
-
-
-// 	// Hide the intro and retract  the navShutters
-// 	introTimeLine.to(intro, 0.8, { ease: "expo.easeInOut", y: '-100vh' });
-// 	introTimeLine.add(gsap.staggerTo(navShutters, 0.5, { ease: "expo.easeInOut", left: '100%' }, 0.08));
-// 	introTimeLine.stop();
-
-// 	for (let i = 0; i < navLinks.length; i++) {
-// 		navLinks[i].addEventListener('mouseover', (e) => {
-// 			if (!isShowingContents) {
-// 				gsap.to(navLinks, 0.5, {
-// 					flex: '1'
-// 				});
-// 				gsap.killTweensOf(e.target, { flex: true });
-// 				gsap.to(e.target, 0.5, {
-// 					flex: '1.3'
-// 				});
-// 			}
-// 		});
 
 // 		// TODO: Hookup hamburger nav to these animations
 // 		navLinks[i].addEventListener('click', (e) => {

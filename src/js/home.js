@@ -86,7 +86,6 @@ export class Home {
   }
 
   disableParallax() {
-    console.log('disabling parallalx');
     this.parallaxInstance.disable();
   }
 

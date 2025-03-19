@@ -15,17 +15,11 @@ export class Shutters {
   shutterWidthFat = 1.5;
   shutterWidthMin = 1;
 
-  // isShowingContents = false;
   intro = document.querySelector('.intro');
   navLinks = document.querySelectorAll('nav>a');
   sections = document.querySelectorAll('section>.pane');
-  introTimeLine = gsap.timeline();
 
   constructor() {
-    this.init();
-  }
-
-  init() {
     this.initShutterEvents();
   }
 
@@ -34,18 +28,36 @@ export class Shutters {
       el.addEventListener('mouseenter', (e) => {
         // Save the currently moused over shutter to use to set initial state.
         this.highlightedShutter = e.target;
-        if (!this.enableActions || this.activeShutter !== null) {
+        if (!this.allowShutterAnimation_()) {
           return;
         }
         this.expandShutter(el);
         this.shrinkShutters(this.navLinks, [el]);
       });
+
+      el.addEventListener('click', (e) => {
+        e.preventDefault();
+        this.selectShutter(el);
+      });
     });
 
     // If we leave the site entirely, go back to idle.
     this.nav.addEventListener('mouseleave', (e) => {
+      if (!this.allowShutterAnimation_()) {
+        return;
+      }
       this.shrinkShutters(this.navLinks);
     });
+  }
+
+  allowShutterAnimation_() {
+    if (!this.enableActions) {
+      return false;
+    }
+    if (this.activeShutter !== null) {
+      return false;
+    }
+    return true;
   }
 
   expandShutter(shutter) {
@@ -57,11 +69,37 @@ export class Shutters {
     });
   }
 
-  shrinkShutters(shutters, excludedShutters = []) {
+  shrinkShutters(shutters, excludedShutters = [], timelineOptions = {}) {
     shutters.forEach((el, index) => {
       if (!excludedShutters.includes(el))
-      gsap.to(el, { flex: this.shutterWidthMin });
+        gsap.to(el, {
+          ...timelineOptions,
+          flex: this.shutterWidthMin
+        });
     })
+  }
+
+  selectShutter(shutter) {
+    const startLabel = "start";
+    const timelineOptions = {
+      duration: 0.8,
+      ease: "expo.easeInOut",
+    };
+
+    const timeline = gsap.timeline();
+    timeline.addLabel(startLabel);
+    timeline.to(shutter, {
+      ...timelineOptions,
+      flex: "30",
+      onStart: () => {
+        this.activeShutter = shutter;
+      },
+      onComplete: () => {
+        this.showPane();
+      }
+    }, startLabel);
+
+    this.shrinkShutters(this.navLinks, [shutter], timelineOptions);
   }
 
   show(timeline = null) {
