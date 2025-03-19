@@ -106,6 +106,17 @@ eval("const Parallax = __webpack_require__(/*! parallax-js */ \"./node_modules/p
 
 /***/ }),
 
+/***/ "./src/js/modal.js":
+/*!*************************!*\
+  !*** ./src/js/modal.js ***!
+  \*************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   Modal: () => (/* binding */ Modal)\n/* harmony export */ });\n\n\nclass Modal {\n  constructor() {\n\n  }\n}\n\n//# sourceURL=webpack://thoughtbubble.ca/./src/js/modal.js?");
+
+/***/ }),
+
 /***/ "./src/js/pane.js":
 /*!************************!*\
   !*** ./src/js/pane.js ***!
@@ -113,7 +124,7 @@ eval("const Parallax = __webpack_require__(/*! parallax-js */ \"./node_modules/p
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   Pane: () => (/* binding */ Pane)\n/* harmony export */ });\nconst Parallax = __webpack_require__(/*! parallax-js */ \"./node_modules/parallax-js/dist/parallax.js\");\nconst { gsap } = __webpack_require__(/*! gsap */ \"./node_modules/gsap/index.js\");\n\nclass Pane {\n  name;\n  contents;\n  feature;\n  details;\n  isActive = false;\n\n  constructor(name, targetElement) {\n    this.name = name;\n    this.initContents();\n    this.initParallax();\n  }\n\n  initContents() {\n    this.contents = document.querySelector(`.pane#${this.name}`);\n    this.feature = this.contents.querySelector('.feature');\n    this.details = this.contents.querySelector('.details');\n  }\n\n  show() {\n    // this.contents.classList.add('active');\n    this.setActive(/* state= */ true);\n  }\n\n  setActive(state) {\n    this.isActive = state;\n    if (state) {\n      this.contents.classList.add('active');\n    } else {\n      this.contents.classList.remove('active');\n    }\n  }\n\n  initParallax() {\n    // window.addEventListener('scroll', updateContentParallax, scrollingListenerAbortSignal);\n    window.addEventListener('scroll', this.updateContentParallax.bind(this));\n  }\n\n  updateContentParallax() {\n    if (!this.isActive) {\n      return;\n    }\n    // We don't want to scroll the image off, so we set a bound for parallax\n    const availableDelta =\n      this.feature.getBoundingClientRect().bottom -\n      this.details.getBoundingClientRect().top;\n      console.log(availableDelta);\n    const maxRange = window.innerHeight;\n    const parallaxFactor = window.pageYOffset * availableDelta / maxRange / 2;\n    let scrolled = window.pageYOffset / window.innerHeight * 100;\n\n    let h1 = this.contents.querySelector('h1');\n    gsap.to(h1, {\n      duration: \"0.8\",\n      ease: \"expo.easeOut\",\n      // bottom: 15 + (scrolled * 0.5) + 'vh',\n      bottom: `${15 + (parallaxFactor / 3)}vh`,\n    });\n\n    // let feature = document.querySelectorAll('.contents .pane .feature')\n    gsap.to(this.feature, {\n      duration: \"0.8\",\n      ease: \"expo.easeOut\",\n      backgroundPosition: `50% ${50 + parallaxFactor}%`,\n    });\n  }\n}\n\n//# sourceURL=webpack://thoughtbubble.ca/./src/js/pane.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   Pane: () => (/* binding */ Pane)\n/* harmony export */ });\nconst Parallax = __webpack_require__(/*! parallax-js */ \"./node_modules/parallax-js/dist/parallax.js\");\nconst { gsap } = __webpack_require__(/*! gsap */ \"./node_modules/gsap/index.js\");\n\nclass Pane {\n  name;\n  contents;\n  feature;\n  details;\n  isActive = false;\n\n  constructor(name, targetElement) {\n    this.name = name;\n    this.initContents();\n    this.initParallax();\n  }\n\n  initContents() {\n    this.contents = document.querySelector(`.pane#${this.name}`);\n    this.feature = this.contents.querySelector('.feature');\n    this.details = this.contents.querySelector('.details');\n  }\n\n  show() {\n    // this.contents.classList.add('active');\n    this.setActive(/* state= */ true);\n  }\n\n  setActive(state) {\n    this.isActive = state;\n    if (state) {\n      this.contents.classList.add('active');\n    } else {\n      this.contents.classList.remove('active');\n    }\n  }\n\n  initParallax() {\n    window.addEventListener('scroll', this.updateContentParallax.bind(this));\n  }\n\n  updateContentParallax() {\n    if (!this.isActive) {\n      return;\n    }\n\n    const parallaxFactor = this.calcParallaxFactor();\n    const backgroundParallaxFactor = parallaxFactor / 2;\n\n    let h1 = this.contents.querySelector('h1');\n    gsap.to(h1, {\n      duration: \"0.8\",\n      ease: \"expo.easeOut\",\n      bottom: `${15 + (parallaxFactor / 3)}vh`,\n    });\n\n    gsap.to(this.feature, {\n      duration: \"0.8\",\n      ease: \"expo.easeOut\",\n      backgroundPosition: `50% ${50 + backgroundParallaxFactor}%`,\n    });\n  }\n\n  /**\n   * We don't want to scroll the image off, so we set a bound for parallax\n   */\n  calcParallaxFactor() {\n    const availableDelta =\n      this.feature.getBoundingClientRect().bottom -\n      this.details.getBoundingClientRect().top;\n    const maxRange = window.innerHeight;\n    return window.pageYOffset * availableDelta / maxRange;\n  }\n}\n\n//# sourceURL=webpack://thoughtbubble.ca/./src/js/pane.js?");
 
 /***/ }),
 
@@ -203,6 +214,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 /******/ 	__webpack_require__("./src/js/home.js");
 /******/ 	__webpack_require__("./src/js/home_blob.js");
 /******/ 	__webpack_require__("./src/js/main.js");
+/******/ 	__webpack_require__("./src/js/modal.js");
 /******/ 	__webpack_require__("./src/js/pane.js");
 /******/ 	var __webpack_exports__ = __webpack_require__("./src/js/shutters.js");
 /******/ 	

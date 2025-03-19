@@ -35,7 +35,6 @@ export class Pane {
   }
 
   initParallax() {
-    // window.addEventListener('scroll', updateContentParallax, scrollingListenerAbortSignal);
     window.addEventListener('scroll', this.updateContentParallax.bind(this));
   }
 
@@ -43,28 +42,32 @@ export class Pane {
     if (!this.isActive) {
       return;
     }
-    // We don't want to scroll the image off, so we set a bound for parallax
-    const availableDelta =
-      this.feature.getBoundingClientRect().bottom -
-      this.details.getBoundingClientRect().top;
-      console.log(availableDelta);
-    const maxRange = window.innerHeight;
-    const parallaxFactor = window.pageYOffset * availableDelta / maxRange / 2;
-    let scrolled = window.pageYOffset / window.innerHeight * 100;
+
+    const parallaxFactor = this.calcParallaxFactor();
+    const backgroundParallaxFactor = parallaxFactor / 2;
 
     let h1 = this.contents.querySelector('h1');
     gsap.to(h1, {
       duration: "0.8",
       ease: "expo.easeOut",
-      // bottom: 15 + (scrolled * 0.5) + 'vh',
       bottom: `${15 + (parallaxFactor / 3)}vh`,
     });
 
-    // let feature = document.querySelectorAll('.contents .pane .feature')
     gsap.to(this.feature, {
       duration: "0.8",
       ease: "expo.easeOut",
-      backgroundPosition: `50% ${50 + parallaxFactor}%`,
+      backgroundPosition: `50% ${50 + backgroundParallaxFactor}%`,
     });
+  }
+
+  /**
+   * We don't want to scroll the image off, so we set a bound for parallax
+   */
+  calcParallaxFactor() {
+    const availableDelta =
+      this.feature.getBoundingClientRect().bottom -
+      this.details.getBoundingClientRect().top;
+    const maxRange = window.innerHeight;
+    return window.pageYOffset * availableDelta / maxRange;
   }
 }

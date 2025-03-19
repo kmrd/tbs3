@@ -651,6 +651,7 @@ nav a.active a.section-link {
   line-height: 1.5em;
   font-weight: normal;
   margin: 0;
+  padding-right: 1rem;
   overflow: hidden;
 }
 
@@ -658,7 +659,8 @@ nav a.active a.section-link {
   content: "/";
   color: orange;
   font-weight: bold;
-  padding-left: 0.25rem;
+  padding-left: 1rem;
+  padding-right: 0.75rem;
 }
 
 .contents .pane .feature h1::after {

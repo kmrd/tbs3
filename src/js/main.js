@@ -304,26 +304,6 @@ function initParallax() {
 	});
 }
 
-function initContentParallax() {
-	window.addEventListener('scroll', updateContentParallax);
-}
-function updateContentParallax() {
-	// function parallaxScroll(){
-	let scrolled = window.pageYOffset / window.innerHeight * 100;
-
-	let h1 = document.querySelectorAll('.contents .pane h1');
-	gsap.to(h1, 0.8, {
-		ease: "expo.easeOut",
-		bottom: 15 + (scrolled * 0.5) + 'vh'
-	});
-
-	let feature = document.querySelectorAll('.contents .pane .feature')
-	gsap.to(feature, 0.8, {
-		ease: "expo.easeOut",
-		backgroundPosition: '50% ' + (50 + (scrolled * 0.1)) + '%'
-	});
-}
-
 function initModal() {
 	let btns = document.querySelectorAll('.modal-btn');
 

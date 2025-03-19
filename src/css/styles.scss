@@ -417,14 +417,15 @@ nav {
 				line-height: 1.5em;
 				font-weight: normal;
 				margin: 0;
-
+				padding-right: 1rem;
 				overflow: hidden;
 
 				&::before {
 					content: '/';
 					color: orange;
 					font-weight: bold;
-					padding-left: .25rem;
+					padding-left: 1rem;
+					padding-right: .75rem;
 				}
 
 				&::after {
