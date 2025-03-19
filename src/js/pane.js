@@ -1,17 +1,21 @@
 const Parallax = require('parallax-js');
 const { gsap } = require('gsap');
+const { Modal } = require('./modal');
 
 export class Pane {
   name;
   contents;
   feature;
   details;
+  modals = [];
   isActive = false;
+
 
   constructor(name, targetElement) {
     this.name = name;
     this.initContents();
     this.initParallax();
+    this.initModals();
   }
 
   initContents() {
@@ -20,8 +24,14 @@ export class Pane {
     this.details = this.contents.querySelector('.details');
   }
 
+  initModals() {
+    const modalBtns = this.contents.querySelectorAll('.modal-btn');
+    modalBtns.forEach((el) => {
+      this.modals.push(new Modal(el));
+    });
+  }
+
   show() {
-    // this.contents.classList.add('active');
     this.setActive(/* state= */ true);
   }
 
