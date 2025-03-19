@@ -1,4 +1,5 @@
 const { gsap } = require('gsap');
+const { Pane } = require('./pane');
 
 export class Shutters {
   /** @type {int|null} */
@@ -17,10 +18,14 @@ export class Shutters {
 
   intro = document.querySelector('.intro');
   navLinks = document.querySelectorAll('nav>a');
-  sections = document.querySelectorAll('section>.pane');
+  // panes = document.querySelectorAll('section>.pane');
+
+  panes = [];
+  activePane;
 
   constructor() {
     this.initShutterEvents();
+    this.initPanes();
   }
 
   initShutterEvents() {
@@ -47,6 +52,14 @@ export class Shutters {
         return;
       }
       this.shrinkShutters(this.navLinks);
+    });
+  }
+
+  initPanes() {
+    const panes = document.querySelectorAll('.contents .pane');
+    panes.forEach((el) => {
+      const name = el.id;
+      this.panes.push(new Pane(name, el));
     });
   }
 
@@ -83,7 +96,7 @@ export class Shutters {
     const startLabel = "start";
     const timelineOptions = {
       duration: 0.8,
-      ease: "expo.easeInOut",
+      ease: "expo.inOut",
     };
 
     const timeline = gsap.timeline();
@@ -95,8 +108,8 @@ export class Shutters {
         this.activeShutter = shutter;
       },
       onComplete: () => {
-        this.showPane();
-      }
+        this.showPane(shutter);
+      },
     }, startLabel);
 
     this.shrinkShutters(this.navLinks, [shutter], timelineOptions);
@@ -108,7 +121,7 @@ export class Shutters {
     animationObject.add(
       gsap.to(this.shutters, {
         duration: 0.5,
-        ease: "expo.easeInOut",
+        ease: "expo.inOut",
         left: '100%',
         stagger: 0.08,
         onComplete: () => {
@@ -118,6 +131,42 @@ export class Shutters {
           }
         },
       }));
+  }
+
+  showPane(navLinkEl) {
+    this.activePane = this.getActivePaneFromLink(navLinkEl);
+    this.markPanesAsInactive();
+    this.markShuttersAsInactive();
+
+    if (this.activePane) {
+      // undo the scrolling needed for the intro
+      window.scrollTo(0, 0);
+      navLinkEl.classList.add('active');
+      this.activePane.show();
+    }
+  }
+
+  markPanesAsInactive() {
+    this.panes.forEach((pane) => {
+      pane.isActive(false);
+    })
+  }
+
+  markShuttersAsInactive() {
+    this.navLinks.forEach((el) => {
+      el.classList.remove('active');
+    });
+  }
+
+  getActivePaneFromLink(linkEl) {
+    let targettedPane;
+    this.panes.forEach((pane) => {
+      const linkHash = linkEl.hash.substr(1);
+      if (pane.name === linkHash) {
+        targettedPane = pane;
+      }
+    });
+    return targettedPane;
   }
 
 }
