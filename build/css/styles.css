@@ -556,21 +556,21 @@ nav a.active a.section-link {
   animation-name: sectionH1;
   animation-duration: 0.6s;
   animation-fill-mode: both;
-  animation-delay: 1s;
+  animation-delay: 0;
 }
 
 .contents .pane.active h1::after {
   animation-name: sectionH1Fill;
   animation-duration: 0.6s;
   animation-fill-mode: both;
-  animation-delay: 1.6s;
+  animation-delay: 0.6s;
 }
 
 .contents .pane.active .details {
   animation-name: sectionContents;
   animation-duration: 1s;
   animation-fill-mode: both;
-  animation-delay: 1s;
+  animation-delay: 0;
 }
 
 .contents .pane:nth-of-type(1) {

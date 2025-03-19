@@ -148,7 +148,7 @@ export class Shutters {
 
   markPanesAsInactive() {
     this.panes.forEach((pane) => {
-      pane.isActive(false);
+      pane.setActive(false);
     })
   }
 

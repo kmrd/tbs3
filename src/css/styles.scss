@@ -338,13 +338,13 @@ nav {
 				animation-name: sectionH1;
 				animation-duration: .6s;
 				animation-fill-mode: both;
-				animation-delay: 1s;
+				animation-delay: 0;
 
 				&::after {
 					animation-name: sectionH1Fill;
 					animation-duration: .6s;
 					animation-fill-mode: both;
-					animation-delay: 1.6s;
+					animation-delay: 0.6s;
 				}
 			}
 
@@ -352,7 +352,7 @@ nav {
 				animation-name: sectionContents;
 				animation-duration: 1s;
 				animation-fill-mode: both;
-				animation-delay: 1s;
+				animation-delay: 0;
 			}
 		}
 		&:nth-of-type(1) {
