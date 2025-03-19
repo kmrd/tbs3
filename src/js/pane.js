@@ -60,7 +60,7 @@ export class Pane {
     gsap.to(h1, {
       duration: "0.8",
       ease: "expo.easeOut",
-      bottom: `${15 + (parallaxFactor / 3)}vh`,
+      bottom: `${15 + (parallaxFactor / 2 / 3)}vh`,
     });
 
     gsap.to(this.feature, {
